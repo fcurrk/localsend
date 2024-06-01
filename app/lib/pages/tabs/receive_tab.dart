@@ -170,12 +170,6 @@ class ReceiveTab extends StatelessWidget {
                       },
                       child: const Icon(Icons.history),
                     ),
-                  ),
-                CustomIconButton(
-                  key: const ValueKey('info-btn'),
-                  onPressed: vm.toggleAdvanced,
-                  child: const Icon(Icons.info),
-                ),
 CustomIconButton(
   onPressed: () async {
     String url = 'https://127.0.0.1:11254';
@@ -192,6 +186,12 @@ CustomIconButton(
     child: const Icon(Icons.qr_code),
   ),
 ),
+                  ),
+                CustomIconButton(
+                  key: const ValueKey('info-btn'),
+                  onPressed: vm.toggleAdvanced,
+                  child: const Icon(Icons.info),
+                ),
               ],
             ),
           ),

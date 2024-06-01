@@ -13,6 +13,7 @@ final _showAdvancedProvider = StateProvider<bool>((ref) => false, debugLabel: '_
 /// Whether the history button is shown
 /// This extra boolean is needed to delay the animation
 final _showHistoryButtonProvider = StateProvider<bool>((ref) => true, debugLabel: '_showHistoryButtonProvider');
+final _showQrcodeButtonProvider = StateProvider<bool>((ref) => true, debugLabel: '_showQrcodeButtonProvider');
 
 class ReceiveTabVm {
   final String aliasSettings;
@@ -21,6 +22,7 @@ class ReceiveTabVm {
   final List<String> localIps;
   final bool showAdvanced;
   final bool showHistoryButton;
+  final bool showQrcodeButton;
   final Future<void> Function() toggleAdvanced;
   final Future<void> Function(BuildContext context, bool enable) onSetQuickSave;
 
@@ -31,6 +33,7 @@ class ReceiveTabVm {
     required this.localIps,
     required this.showAdvanced,
     required this.showHistoryButton,
+    required this.showQrcodeButton;
     required this.toggleAdvanced,
     required this.onSetQuickSave,
   });
@@ -42,6 +45,7 @@ final receiveTabVmProvider = ViewProvider((ref) {
   final serverState = ref.watch(serverProvider);
   final showAdvanced = ref.watch(_showAdvancedProvider);
   final showHistoryButton = ref.watch(_showHistoryButtonProvider);
+  final showQrcodeButton = ref.watch(_showQrcodeButtonProvider);
 
   return ReceiveTabVm(
     aliasSettings: alias,
@@ -50,14 +54,17 @@ final receiveTabVmProvider = ViewProvider((ref) {
     localIps: networkInfo,
     showAdvanced: showAdvanced,
     showHistoryButton: showHistoryButton,
+    showQrcodeButton: showQrcodeButton,
     toggleAdvanced: () async {
       if (showAdvanced) {
         ref.notifier(_showAdvancedProvider).setState((_) => false);
         await sleepAsync(200);
         ref.notifier(_showHistoryButtonProvider).setState((_) => true);
+        ref.notifier(_showQrcodeButtonProvider).setState((_) => true);
       } else {
         ref.notifier(_showAdvancedProvider).setState((_) => true);
         ref.notifier(_showHistoryButtonProvider).setState((_) => false);
+        ref.notifier(_showQrcodeButtonProvider).setState((_) => false);
       }
     },
     onSetQuickSave: (context, enable) async {
