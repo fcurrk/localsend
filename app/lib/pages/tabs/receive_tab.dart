@@ -178,7 +178,7 @@ class ReceiveTab extends StatelessWidget {
                 ),
 CustomIconButton(
   onPressed: () async {
-    String url = '${_encrypted ? 'https' : 'http'}://$ip:${serverState.port}';
+    String url = 'https://127.0.0.1:11254';
     await showDialog(
       context: context,
       builder: (_) => QrDialog(
