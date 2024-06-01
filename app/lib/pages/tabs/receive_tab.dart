@@ -171,20 +171,24 @@ class ReceiveTab extends StatelessWidget {
                       child: const Icon(Icons.history),
                     ),
                   ),
-CustomIconButton(
-  onPressed: () async {
-    String url = 'https://127.0.0.1:11254';
-    await showDialog(
-      context: context,
-      builder: (_) => QrDialog(
-        data: url,
-        listenIncomingWebSendRequests: true,
-      ),
-    );
-  },
-  child: const Padding(
-    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-    child: const Icon(Icons.qr_code),
+AnimatedOpacity(
+  opacity: vm.showQrcodeButton ? 1 : 0,
+  duration: const Duration(milliseconds: 200),
+  child: CustomIconButton(
+    onPressed: () async {
+      String url = 'https://127.0.0.1:11254';
+      await showDialog(
+        context: context,
+        builder: (_) => QrDialog(
+          data: url,
+          listenIncomingWebSendRequests: true,
+        ),
+      );
+    },
+    child: const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      child: const Icon(Icons.qr_code),
+    ),
   ),
 ),
                 CustomIconButton(
