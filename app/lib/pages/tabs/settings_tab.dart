@@ -2,7 +2,7 @@ import 'package:common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:localsend_app/gen/strings.g.dart';
 import 'package:localsend_app/model/persistence/color_mode.dart';
-import 'package:localsend_app/pages/about/about_page.dart';
+//import 'package:localsend_app/pages/about/about_page.dart';
 import 'package:localsend_app/pages/changelog_page.dart';
 import 'package:localsend_app/pages/donation/donation_page.dart';
 import 'package:localsend_app/pages/language_page.dart';
@@ -418,19 +418,19 @@ class SettingsTab extends StatelessWidget {
                 ),
               ],
             ),
-            _SettingsSection(
-              title: t.settingsTab.other.title,
-              padding: const EdgeInsets.only(bottom: 0),
-              children: [
-                _ButtonEntry(
-                  label: t.aboutPage.title,
-                  buttonLabel: t.general.open,
-                  onTap: () async {
-                    await context.push(() => const AboutPage());
-                  },
-                ),
-              ],
-            ),
+//            _SettingsSection(
+//              title: t.settingsTab.other.title,
+//              padding: const EdgeInsets.only(bottom: 0),
+//              children: [
+//                _ButtonEntry(
+//                  label: t.aboutPage.title,
+//                  buttonLabel: t.general.open,
+//                  onTap: () async {
+//                    await context.push(() => const AboutPage());
+//                  },
+//                ),
+//              ],
+//            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
