@@ -429,6 +429,34 @@ class SettingsTab extends StatelessWidget {
 //                    await context.push(() => const AboutPage());
 //                  },
 //                ),
+//                _ButtonEntry(
+//                  label: t.settingsTab.other.support,
+//                  buttonLabel: t.settingsTab.other.donate,
+//                  onTap: () async {
+//                    await context.push(() => const DonationPage());
+//                  },
+//                ),
+//                _ButtonEntry(
+//                  label: t.settingsTab.other.privacyPolicy,
+//                  buttonLabel: t.general.open,
+//                  onTap: () async {
+//                    await launchUrl(
+//                      Uri.parse('https://localsend.org/#/privacy'),
+//                      mode: LaunchMode.externalApplication,
+//                    );
+//                  },
+//                ),
+//                if (checkPlatform([TargetPlatform.iOS, TargetPlatform.macOS]))
+//                  _ButtonEntry(
+//                    label: t.settingsTab.other.termsOfUse,
+//                    buttonLabel: t.general.open,
+//                    onTap: () async {
+//                      await launchUrl(
+//                        Uri.parse('https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'),
+//                        mode: LaunchMode.externalApplication,
+//                      );
+//                    },
+//                  ),
 //              ],
 //            ),
             Row(
@@ -457,6 +485,18 @@ class SettingsTab extends StatelessWidget {
               '© ${DateTime.now().year} Tien Do Nam',
               textAlign: TextAlign.center,
             ),
+//            Center(
+//              child: TextButton.icon(
+//                style: TextButton.styleFrom(
+//                  foregroundColor: Theme.of(context).colorScheme.onSurface,
+//                ),
+//                onPressed: () async {
+//                  await context.push(() => const ChangelogPage());
+//                },
+//                icon: const Icon(Icons.history),
+//                label: Text(t.changelogPage.title),
+//              ),
+//            ),
             const SizedBox(height: 80),
           ],
         );
