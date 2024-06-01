@@ -176,7 +176,9 @@ AnimatedOpacity(
   duration: const Duration(milliseconds: 200),
   child: CustomIconButton(
     onPressed: () async {
-      String url = 'https://127.0.0.1:11254';
+      String firstIP = vm.localIps.isNotEmpty ? vm.localIps.first : '';
+      String toport = vm.serverState?.port.toString() ?? '-';
+      String url = 'http://$firstIP:$toport';
       await showDialog(
         context: context,
         builder: (_) => QrDialog(

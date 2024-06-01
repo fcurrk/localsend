@@ -14,5 +14,5 @@ String generateRandomAlias() {
 //  );
 
   final timestamp = DateTime.now().millisecondsSinceEpoch;
-  return 'ID-${timestamp}';
+  return '${timestamp}';
 }
