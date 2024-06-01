@@ -33,7 +33,7 @@ class ReceiveTabVm {
     required this.localIps,
     required this.showAdvanced,
     required this.showHistoryButton,
-    required this.showQrcodeButton;
+    required this.showQrcodeButton,
     required this.toggleAdvanced,
     required this.onSetQuickSave,
   });
