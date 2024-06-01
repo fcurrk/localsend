@@ -94,7 +94,7 @@ enum AppLocale with BaseAppLocale<AppLocale, Translations> {
 //	tr(languageCode: 'tr', build: _StringsTr.build),
 //	uk(languageCode: 'uk', build: _StringsUk.build),
 //	ur(languageCode: 'ur', build: _StringsUr.build),
-/	vi(languageCode: 'vi', build: _StringsVi.build),
+//	vi(languageCode: 'vi', build: _StringsVi.build),
 	zhCn(languageCode: 'zh', countryCode: 'CN', build: _StringsZhCn.build),
 	zhHk(languageCode: 'zh', countryCode: 'HK', build: _StringsZhHk.build),
 	zhTw(languageCode: 'zh', countryCode: 'TW', build: _StringsZhTw.build);
