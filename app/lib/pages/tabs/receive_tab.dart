@@ -11,6 +11,7 @@ import 'package:localsend_app/widget/custom_icon_button.dart';
 import 'package:localsend_app/widget/local_send_logo.dart';
 import 'package:localsend_app/widget/responsive_list_view.dart';
 import 'package:localsend_app/widget/rotating_widget.dart';
+import 'package:localsend_app/widget/dialogs/qr_dialog.dart';
 import 'package:refena_flutter/refena_flutter.dart';
 import 'package:routerino/routerino.dart';
 
@@ -175,6 +176,22 @@ class ReceiveTab extends StatelessWidget {
                   onPressed: vm.toggleAdvanced,
                   child: const Icon(Icons.info),
                 ),
+CustomIconButton(
+  onPressed: () async {
+    String url = '${_encrypted ? 'https' : 'http'}://$ip:${serverState.port}';
+    await showDialog(
+      context: context,
+      builder: (_) => QrDialog(
+        data: url,
+        listenIncomingWebSendRequests: true,
+      ),
+    );
+  },
+  child: const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+    child: const Icon(Icons.qr_code),
+  ),
+),
               ],
             ),
           ),
