@@ -34,18 +34,7 @@ class AboutPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10),
-          Center(
-            child: TextButton(
-              onPressed: () async {
-                await launchUrl(Uri.parse('https://localsend.org'));
-              },
-              child: const Text('localsend.org'),
-            ),
-          ),
-          const SizedBox(height: 10),
           Text(t.aboutPage.description.join('\n\n')),
-          const SizedBox(height: 20),
-          Text(t.aboutPage.author, style: const TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 50),
         ],
       ),
