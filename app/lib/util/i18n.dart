@@ -3,7 +3,7 @@ import 'package:localsend_app/gen/strings.g.dart';
 void initI18n() {
   // Register default plural resolver
   for (final locale in AppLocale.values) {
-    if ([AppLocale.en, AppLocale.de].contains(locale)) {
+    if ([AppLocale.en].contains(locale)) {
       continue;
     }
 
