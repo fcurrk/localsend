@@ -1,9 +1,3 @@
 template: |
-  ### Summary
-  
-  - insert summary here
-  
-  ### Contributions
-  
-  $CHANGES
+  Other changes.
 
