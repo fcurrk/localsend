@@ -7,7 +7,7 @@ script:
 AppDir:
   path: AppDir
   app_info:
-    id: org.localsend.localsend_app
+    id: org.localsend.minijer.app
     name: LocalSend
     icon: localsend
     version: latest

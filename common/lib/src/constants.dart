@@ -17,7 +17,7 @@ const fallbackProtocolVersion = '1.0';
 
 /// The default http server port and
 /// and multicast port.
-const defaultPort = 53317;
+const defaultPort = 53333;
 
 /// The default discovery timeout in milliseconds.
 /// This is the time the discovery server waits for responses.
