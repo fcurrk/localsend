@@ -1,4 +1,4 @@
-package org.localsend.minijer.app
+package org.localsend.localsend_app
 
 import android.annotation.SuppressLint
 import android.app.Activity
