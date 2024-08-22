@@ -3,8 +3,8 @@
 /// Original: assets/i18n
 /// To regenerate, run: `dart run slang`
 ///
-/// Locales: 41
-/// Strings: 12436 (303 per locale)
+/// Locales: 42
+/// Strings: 12884 (306 per locale)
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -15,43 +15,44 @@ import 'package:slang_flutter/slang_flutter.dart';
 export 'package:slang_flutter/slang_flutter.dart';
 
 part 'strings_en.g.dart';
-//part 'strings_ar.g.dart';
-//part 'strings_bn.g.dart';
-//part 'strings_ca.g.dart';
-//part 'strings_cs.g.dart';
-//part 'strings_da.g.dart';
-//part 'strings_de.g.dart';
-//part 'strings_el.g.dart';
-//part 'strings_en_IN.g.dart';
-//part 'strings_es_ES.g.dart';
-//part 'strings_eu.g.dart';
-//part 'strings_fa.g.dart';
-//part 'strings_fi.g.dart';
-//part 'strings_fil_PH.g.dart';
-//part 'strings_fr.g.dart';
-//part 'strings_gu.g.dart';
-//part 'strings_he.g.dart';
-//part 'strings_hu.g.dart';
-//part 'strings_id.g.dart';
-//part 'strings_it.g.dart';
-//part 'strings_ja.g.dart';
-//part 'strings_km.g.dart';
-//part 'strings_ko.g.dart';
-//part 'strings_ne.g.dart';
-//part 'strings_nl.g.dart';
-//part 'strings_pl.g.dart';
-//part 'strings_pt_BR.g.dart';
-//part 'strings_pt_PT.g.dart';
-//part 'strings_ro.g.dart';
-//part 'strings_ru.g.dart';
-//part 'strings_sr.g.dart';
-//part 'strings_sr_Cyrl.g.dart';
-//part 'strings_sv.g.dart';
-//part 'strings_th.g.dart';
-//part 'strings_tr.g.dart';
-//part 'strings_uk.g.dart';
-//part 'strings_ur.g.dart';
-//part 'strings_vi.g.dart';
+part 'strings_ar.g.dart';
+part 'strings_bn.g.dart';
+part 'strings_ca.g.dart';
+part 'strings_cs.g.dart';
+part 'strings_da.g.dart';
+part 'strings_de.g.dart';
+part 'strings_el.g.dart';
+part 'strings_en_IN.g.dart';
+part 'strings_es_ES.g.dart';
+part 'strings_eu.g.dart';
+part 'strings_fa.g.dart';
+part 'strings_fi.g.dart';
+part 'strings_fil_PH.g.dart';
+part 'strings_fr.g.dart';
+part 'strings_gu.g.dart';
+part 'strings_he.g.dart';
+part 'strings_hi.g.dart';
+part 'strings_hu.g.dart';
+part 'strings_id.g.dart';
+part 'strings_it.g.dart';
+part 'strings_ja.g.dart';
+part 'strings_km.g.dart';
+part 'strings_ko.g.dart';
+part 'strings_ne.g.dart';
+part 'strings_nl.g.dart';
+part 'strings_pl.g.dart';
+part 'strings_pt_BR.g.dart';
+part 'strings_pt_PT.g.dart';
+part 'strings_ro.g.dart';
+part 'strings_ru.g.dart';
+part 'strings_sr.g.dart';
+part 'strings_sr_Cyrl.g.dart';
+part 'strings_sv.g.dart';
+part 'strings_th.g.dart';
+part 'strings_tr.g.dart';
+part 'strings_uk.g.dart';
+part 'strings_ur.g.dart';
+part 'strings_vi.g.dart';
 part 'strings_zh_CN.g.dart';
 part 'strings_zh_HK.g.dart';
 part 'strings_zh_TW.g.dart';
@@ -66,43 +67,44 @@ const AppLocale _baseLocale = AppLocale.en;
 /// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
 enum AppLocale with BaseAppLocale<AppLocale, Translations> {
 	en(languageCode: 'en', build: Translations.build),
-//	ar(languageCode: 'ar', build: _StringsAr.build),
-//	bn(languageCode: 'bn', build: _StringsBn.build),
-//	ca(languageCode: 'ca', build: _StringsCa.build),
-//	cs(languageCode: 'cs', build: _StringsCs.build),
-//	da(languageCode: 'da', build: _StringsDa.build),
-//	de(languageCode: 'de', build: _StringsDe.build),
-//	el(languageCode: 'el', build: _StringsEl.build),
-//	enIn(languageCode: 'en', countryCode: 'IN', build: _StringsEnIn.build),
-//	esEs(languageCode: 'es', countryCode: 'ES', build: _StringsEsEs.build),
-//	eu(languageCode: 'eu', build: _StringsEu.build),
-//	fa(languageCode: 'fa', build: _StringsFa.build),
-//	fi(languageCode: 'fi', build: _StringsFi.build),
-//	filPh(languageCode: 'fil', countryCode: 'PH', build: _StringsFilPh.build),
-//	fr(languageCode: 'fr', build: _StringsFr.build),
-//	gu(languageCode: 'gu', build: _StringsGu.build),
-//	he(languageCode: 'he', build: _StringsHe.build),
-//	hu(languageCode: 'hu', build: _StringsHu.build),
-//	id(languageCode: 'id', build: _StringsId.build),
-//	it(languageCode: 'it', build: _StringsIt.build),
-//	ja(languageCode: 'ja', build: _StringsJa.build),
-//	km(languageCode: 'km', build: _StringsKm.build),
-//	ko(languageCode: 'ko', build: _StringsKo.build),
-//	ne(languageCode: 'ne', build: _StringsNe.build),
-//	nl(languageCode: 'nl', build: _StringsNl.build),
-//	pl(languageCode: 'pl', build: _StringsPl.build),
-//	ptBr(languageCode: 'pt', countryCode: 'BR', build: _StringsPtBr.build),
-//	ptPt(languageCode: 'pt', countryCode: 'PT', build: _StringsPtPt.build),
-//	ro(languageCode: 'ro', build: _StringsRo.build),
-//	ru(languageCode: 'ru', build: _StringsRu.build),
-//	sr(languageCode: 'sr', build: _StringsSr.build),
-//	srCyrl(languageCode: 'sr', scriptCode: 'Cyrl', build: _StringsSrCyrl.build),
-//	sv(languageCode: 'sv', build: _StringsSv.build),
-//	th(languageCode: 'th', build: _StringsTh.build),
-//	tr(languageCode: 'tr', build: _StringsTr.build),
-//	uk(languageCode: 'uk', build: _StringsUk.build),
-//	ur(languageCode: 'ur', build: _StringsUr.build),
-//	vi(languageCode: 'vi', build: _StringsVi.build),
+	ar(languageCode: 'ar', build: _StringsAr.build),
+	bn(languageCode: 'bn', build: _StringsBn.build),
+	ca(languageCode: 'ca', build: _StringsCa.build),
+	cs(languageCode: 'cs', build: _StringsCs.build),
+	da(languageCode: 'da', build: _StringsDa.build),
+	de(languageCode: 'de', build: _StringsDe.build),
+	el(languageCode: 'el', build: _StringsEl.build),
+	enIn(languageCode: 'en', countryCode: 'IN', build: _StringsEnIn.build),
+	esEs(languageCode: 'es', countryCode: 'ES', build: _StringsEsEs.build),
+	eu(languageCode: 'eu', build: _StringsEu.build),
+	fa(languageCode: 'fa', build: _StringsFa.build),
+	fi(languageCode: 'fi', build: _StringsFi.build),
+	filPh(languageCode: 'fil', countryCode: 'PH', build: _StringsFilPh.build),
+	fr(languageCode: 'fr', build: _StringsFr.build),
+	gu(languageCode: 'gu', build: _StringsGu.build),
+	he(languageCode: 'he', build: _StringsHe.build),
+	hi(languageCode: 'hi', build: _StringsHi.build),
+	hu(languageCode: 'hu', build: _StringsHu.build),
+	id(languageCode: 'id', build: _StringsId.build),
+	it(languageCode: 'it', build: _StringsIt.build),
+	ja(languageCode: 'ja', build: _StringsJa.build),
+	km(languageCode: 'km', build: _StringsKm.build),
+	ko(languageCode: 'ko', build: _StringsKo.build),
+	ne(languageCode: 'ne', build: _StringsNe.build),
+	nl(languageCode: 'nl', build: _StringsNl.build),
+	pl(languageCode: 'pl', build: _StringsPl.build),
+	ptBr(languageCode: 'pt', countryCode: 'BR', build: _StringsPtBr.build),
+	ptPt(languageCode: 'pt', countryCode: 'PT', build: _StringsPtPt.build),
+	ro(languageCode: 'ro', build: _StringsRo.build),
+	ru(languageCode: 'ru', build: _StringsRu.build),
+	sr(languageCode: 'sr', build: _StringsSr.build),
+	srCyrl(languageCode: 'sr', scriptCode: 'Cyrl', build: _StringsSrCyrl.build),
+	sv(languageCode: 'sv', build: _StringsSv.build),
+	th(languageCode: 'th', build: _StringsTh.build),
+	tr(languageCode: 'tr', build: _StringsTr.build),
+	uk(languageCode: 'uk', build: _StringsUk.build),
+	ur(languageCode: 'ur', build: _StringsUr.build),
+	vi(languageCode: 'vi', build: _StringsVi.build),
 	zhCn(languageCode: 'zh', countryCode: 'CN', build: _StringsZhCn.build),
 	zhHk(languageCode: 'zh', countryCode: 'HK', build: _StringsZhHk.build),
 	zhTw(languageCode: 'zh', countryCode: 'TW', build: _StringsZhTw.build);

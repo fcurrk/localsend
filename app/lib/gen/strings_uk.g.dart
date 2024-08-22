@@ -123,6 +123,7 @@ class _StringsSendTabUk extends _StringsSendTabEn {
 	@override String get nearbyDevices => 'Пристрої поблизу';
 	@override String get thisDevice => 'Цей пристрій';
 	@override String get scan => 'Пошук пристроїв';
+	@override String get manualSending => 'Ручне надсилання';
 	@override String get sendMode => 'Режим надсилання';
 	@override late final _StringsSendTabSendModesUk sendModes = _StringsSendTabSendModesUk._(_root);
 	@override String get sendModeHelp => 'Довідка';
@@ -383,6 +384,7 @@ class _StringsTrayUk extends _StringsTrayEn {
 	// Translations
 	@override String get open => _root.general.open;
 	@override String get close => 'Вийти з LocalSend';
+	@override String get closeWindows => 'Вийти';
 }
 
 // Path: web
@@ -415,7 +417,7 @@ class _StringsAssetPickerUk extends _StringsAssetPickerEn {
 	@override String get gifIndicator => 'GIF';
 	@override String get loadFailed => 'Не вдалося завантажити';
 	@override String get original => 'Оригінал';
-	@override String get preview => 'Попередній перегляд';
+	@override String get preview => 'Передперегляд';
 	@override String get select => 'Вибрати';
 	@override String get emptyList => 'Список порожній';
 	@override String get unSupportedAssetType => 'Непідтримуваний тип файлу.';
@@ -431,7 +433,7 @@ class _StringsAssetPickerUk extends _StringsAssetPickerEn {
 	@override String get sTypeVideoLabel => 'Відео';
 	@override String get sTypeOtherLabel => 'Інші медіафайли';
 	@override String get sActionPlayHint => 'відтворити';
-	@override String get sActionPreviewHint => 'попередній перегляд';
+	@override String get sActionPreviewHint => 'передперегляд';
 	@override String get sActionSelectHint => 'вибрати';
 	@override String get sActionSwitchPathLabel => 'змінити шлях';
 	@override String get sActionUseCameraHint => 'використати камеру';
@@ -504,7 +506,8 @@ class _StringsSettingsTabGeneralUk extends _StringsSettingsTabGeneralEn {
 	@override late final _StringsSettingsTabGeneralColorOptionsUk colorOptions = _StringsSettingsTabGeneralColorOptionsUk._(_root);
 	@override String get language => 'Мова';
 	@override late final _StringsSettingsTabGeneralLanguageOptionsUk languageOptions = _StringsSettingsTabGeneralLanguageOptionsUk._(_root);
-	@override String get saveWindowPlacement => 'Зберігати розташування вікна після закриття';
+	@override String get saveWindowPlacement => 'Зберігати розташування вікна після виходу';
+	@override String get saveWindowPlacementWindows => 'Зберігати розташування вікна після виходу';
 	@override String get minimizeToTray => 'Згортати в системний трей/смугу меню при закритті';
 	@override String get launchAtStartup => 'Автозапуск';
 	@override String get launchMinimized => 'Прихований автозапуск';

@@ -10,13 +10,15 @@
   "sendTab": {
     "picker": {
       "clipboard": "Paste"
-    }
+    },
+    "manualSending": "Manual sending"
   },
   "settingsTab": {
     "general": {
       "colorOptions": {
         "oled": "OLED"
       },
+      "saveWindowPlacementWindows": "Save window position after exit",
       "showInContextMenu": "Show LocalSend in context menu"
     },
     "receive": {
@@ -106,6 +108,9 @@
   "sanitization": {
     "empty": "Filename cannot be empty",
     "invalid": "Filename contains invalid characters"
+  },
+  "tray": {
+    "closeWindows": "Exit"
   },
   "web": {
     "enterPin": "Enter PIN",

@@ -123,6 +123,7 @@ class _StringsSendTabZhCn extends _StringsSendTabEn {
 	@override String get nearbyDevices => '附近的设备';
 	@override String get thisDevice => '这台设备';
 	@override String get scan => '扫描设备';
+	@override String get manualSending => '手动发送';
 	@override String get sendMode => '发送模式';
 	@override late final _StringsSendTabSendModesZhCn sendModes = _StringsSendTabSendModesZhCn._(_root);
 	@override String get sendModeHelp => '解释';
@@ -158,8 +159,8 @@ class _StringsTroubleshootPageZhCn extends _StringsTroubleshootPageEn {
 	@override String get solution => '解决方案：';
 	@override String get fixButton => '自动修复';
 	@override late final _StringsTroubleshootPageFirewallZhCn firewall = _StringsTroubleshootPageFirewallZhCn._(_root);
-	@override late final _StringsTroubleshootPageNoConnectionZhCn noConnection = _StringsTroubleshootPageNoConnectionZhCn._(_root);
 	@override late final _StringsTroubleshootPageNoDiscoveryZhCn noDiscovery = _StringsTroubleshootPageNoDiscoveryZhCn._(_root);
+	@override late final _StringsTroubleshootPageNoConnectionZhCn noConnection = _StringsTroubleshootPageNoConnectionZhCn._(_root);
 }
 
 // Path: receiveHistoryPage
@@ -294,8 +295,8 @@ class _StringsAboutPageZhCn extends _StringsAboutPageEn {
 	];
 	@override String get author => '作者';
 	@override String get contributors => '贡献者';
-	@override String get translators => '翻译者';
 	@override String get packagers => '包';
+	@override String get translators => '翻译者';
 }
 
 // Path: donationPage
@@ -452,6 +453,7 @@ class _StringsTrayZhCn extends _StringsTrayEn {
 	// Translations
 	@override String get open => _root.general.open;
 	@override String get close => '退出 LocalSend';
+	@override String get closeWindows => '退出';
 }
 
 // Path: web
@@ -573,7 +575,8 @@ class _StringsSettingsTabGeneralZhCn extends _StringsSettingsTabGeneralEn {
 	@override late final _StringsSettingsTabGeneralColorOptionsZhCn colorOptions = _StringsSettingsTabGeneralColorOptionsZhCn._(_root);
 	@override String get language => '语言';
 	@override late final _StringsSettingsTabGeneralLanguageOptionsZhCn languageOptions = _StringsSettingsTabGeneralLanguageOptionsZhCn._(_root);
-	@override String get saveWindowPlacement => '关闭时：保存窗口位置';
+	@override String get saveWindowPlacement => '关闭时保存窗口位置';
+	@override String get saveWindowPlacementWindows => '退出时保存窗口位置';
 	@override String get minimizeToTray => '关闭时：最小化到系统托盘';
 	@override String get launchAtStartup => '登录系统后自动启动程序';
 	@override String get launchMinimized => '静默自启：只启动托盘服务';
@@ -656,17 +659,6 @@ class _StringsTroubleshootPageFirewallZhCn extends _StringsTroubleshootPageFirew
 	@override String get openFirewall => '打开防火墙';
 }
 
-// Path: troubleshootPage.noConnection
-class _StringsTroubleshootPageNoConnectionZhCn extends _StringsTroubleshootPageNoConnectionEn {
-	_StringsTroubleshootPageNoConnectionZhCn._(_StringsZhCn root) : this._root = root, super._(root);
-
-	@override final _StringsZhCn _root; // ignore: unused_field
-
-	// Translations
-	@override String get symptom => '双方设备均无法发现对方或者分享文件。';
-	@override String get solution => '当问题发生在双方设备上时，请先确认双方设备处于同一 Wi‑Fi 网络内，且有相同的网络（端口、多播地址、加密选项）配置。若因 Wi‑Fi 不允许参与者间通信，那么请在路由器中关闭这个（如：AP 隔离）选项。';
-}
-
 // Path: troubleshootPage.noDiscovery
 class _StringsTroubleshootPageNoDiscoveryZhCn extends _StringsTroubleshootPageNoDiscoveryEn {
 	_StringsTroubleshootPageNoDiscoveryZhCn._(_StringsZhCn root) : this._root = root, super._(root);
@@ -676,6 +668,17 @@ class _StringsTroubleshootPageNoDiscoveryZhCn extends _StringsTroubleshootPageNo
 	// Translations
 	@override String get symptom => '此设备未能发现其他设备。';
 	@override String get solution => '确保所有设备都在同一个Wi-Fi网络上，并共享相同的配置（端口、多播地址、加密）。您可以尝试手动键入目标设备的IP地址。如果这有效，请考虑将此设备添加到收藏夹中，以便将来可以自动发现。';
+}
+
+// Path: troubleshootPage.noConnection
+class _StringsTroubleshootPageNoConnectionZhCn extends _StringsTroubleshootPageNoConnectionEn {
+	_StringsTroubleshootPageNoConnectionZhCn._(_StringsZhCn root) : this._root = root, super._(root);
+
+	@override final _StringsZhCn _root; // ignore: unused_field
+
+	// Translations
+	@override String get symptom => '双方设备均无法发现对方或者分享文件。';
+	@override String get solution => '当问题发生在双方设备上时，请先确认双方设备处于同一 Wi‑Fi 网络内，且有相同的网络（端口、多播地址、加密选项）配置。若因 Wi‑Fi 不允许参与者间通信，那么请在路由器中关闭这个（如：AP 隔离）选项。';
 }
 
 // Path: receiveHistoryPage.entryActions

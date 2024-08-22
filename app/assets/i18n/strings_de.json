@@ -67,6 +67,7 @@
     "nearbyDevices": "Geräte in der Nähe",
     "thisDevice": "Dieses Gerät",
     "scan": "Geräte suchen",
+    "manualSending": "Manuelles Senden",
     "sendMode": "Sendemodus",
     "sendModes": {
       "single": "Einzelner Empfänger",
@@ -96,8 +97,9 @@
       "languageOptions": {
         "system": "System"
       },
-      "saveWindowPlacement": "Schließen: Fensterposition speichern",
-      "minimizeToTray": "Schließen: in Symbolleiste minimieren",
+      "saveWindowPlacement": "Beenden: Fensterposition speichern",
+      "saveWindowPlacementWindows": "Beenden: Fensterposition speichern",
+      "minimizeToTray": "Beenden: in Symbolleiste minimieren",
       "launchAtStartup": "Autostart nach Login",
       "launchMinimized": "Autostart: versteckt starten",
       "showInContextMenu": "LocalSend im Kontextmenü anzeigen",
@@ -375,7 +377,8 @@
   "tray": {
     "@info": "Apple Guidelines are very strict about the \"close\" wording.",
     "open": "@:general.open",
-    "close": "LocalSend beenden"
+    "close": "LocalSend beenden",
+    "closeWindows": "Beenden"
   },
   "web": {
     "waiting": "@:sendPage.waiting",
