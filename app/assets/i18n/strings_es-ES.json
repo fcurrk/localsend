@@ -27,7 +27,8 @@
     "online": "En línea",
     "open": "Abrir",
     "queue": "Cola",
-    "quickSave": "Guardado Rápido",
+    "quickSave": "Guardado rápido",
+    "quickSaveFromFavorites": "Guardado rápido en \"Favoritos\"",
     "renamed": "Renombrado",
     "reset": "Resetear",
     "restart": "Reiniciar",
@@ -46,6 +47,11 @@
       "ip": "IP:",
       "port": "Puerto:",
       "alias": "Alias:"
+    },
+    "quickSave": {
+      "off": "@:general.off",
+      "favorites": "Favoritos",
+      "on": "@:general.on"
     }
   },
   "sendTab": {
@@ -67,6 +73,7 @@
     "nearbyDevices": "Dispositivos Cercanos",
     "thisDevice": "Este dispositivo",
     "scan": "Buscar dispositivos",
+    "manualSending": "Envío manual",
     "sendMode": "Modo de envío",
     "sendModes": {
       "single": "Solo un destino",
@@ -74,7 +81,7 @@
       "link": "Compartir enlace"
     },
     "sendModeHelp": "Explicación",
-    "help": "Asegúrate de que el destino elegido esté en la misma red Wi-Fi.",
+    "help": "Asegúrate que el destino elegido esté en la misma red Wi-Fi.",
     "placeItems": "Selecciona items para compartir."
   },
   "settingsTab": {
@@ -97,14 +104,18 @@
         "system": "Sistema"
       },
       "saveWindowPlacement": "Al salir guardar la ubicación de la ventana",
+      "saveWindowPlacementWindows": "Guardar la posición de la ventana después de salir",
       "minimizeToTray": "Cerrar: Minimizar ventana",
       "launchAtStartup": "Inicio automático",
       "launchMinimized": "Inicio automático: Iniciar minimizado",
+      "showInContextMenu": "Mostrar LocalSend en el menú contextual",
       "animations": "Animaciones"
     },
     "receive": {
       "title": "Recibir",
       "quickSave": "@:general.quickSave",
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
+      "requirePin": "@:webSharePage.requirePin",
       "autoFinish": "Auto finalizar",
       "destination": "Destino",
       "downloads": "(Descargas)",
@@ -123,6 +134,9 @@
       "deviceType": "Tipo de dispositivo",
       "deviceModel": "Modelo de dispositivo",
       "port": "Puerto",
+      "discoveryTimeout": "Tiempo de espera para Detección",
+      "useSystemName": "Usar el nombre del sistema",
+      "generateRandomAlias": "Generar alias aleatorio",
       "portWarning": "Es posible que no seas visible para otros dispositivos porque estás utilizando un puerto personalizado. (Puerto por defecto: {defaultPort})",
       "encryption": "Encriptación",
       "multicastGroup": "Multicast",
@@ -143,13 +157,17 @@
     "solution": "Solución:",
     "fixButton": "Corregir automáticamente",
     "firewall": {
-      "symptom": "Esta aplicación puede enviar archivos a otros dispositivos pero otros dispositivos no pueden enviar archivos a este.",
+      "symptom": "Este dispositivo puede enviar archivos a otros, pero otros dispositivos no pueden enviar archivos a este.",
       "solution": "Lo más probable es que se trate de un problema con el firewall, puedes solucionarlo permitiendo las conexiones entrantes (UDP y TCP) en el puerto {port}.",
       "openFirewall": "Abrir Firewall"
     },
+    "noDiscovery": {
+      "symptom": "Este dispositivo no puede descubrir otros dispositivos.",
+      "solution": "Asegúrese que todos los dispositivos estén en la misma red Wi-Fi y compartan la misma configuración (puerto, dirección de multidifusión, cifrado). Puede intentar escribir la dirección IP del dispositivo de destino manualmente. Si esto funciona, considere agregar este dispositivo a los favoritos para que pueda detectarse automáticamente en el futuro."
+    },
     "noConnection": {
       "symptom": "Ambos dispositivos no pueden descubrirse ni compartir archivos.",
-      "solution": "¿El problema existe en ambos lados? Tienes que asegurarte que los dispositivos están en la misma red wifi y comparten la misma configuración (puerto, dirección multicast, encriptación). Es posible que el wifi no permita la comunicación entre los dispositivos. En este caso, hay que activar esta opción en el router."
+      "solution": "¿El problema existe en ambos lados? Tienes que asegurarte que los dispositivos están en la misma red Wi-Fi y comparten la misma configuración (puerto, dirección multicast, encriptación). Es posible que el Wi-Fi no permita la comunicación entre los dispositivos. En este caso, hay que activar esta opción en el router."
     }
   },
   "receiveHistoryPage": {
@@ -159,6 +177,7 @@
     "empty": "El historial está vacío.",
     "entryActions": {
       "open": "Abrir archivo",
+      "showInFolder": "Mostrar en carpeta",
       "info": "Información",
       "deleteFromHistory": "Borrar del historial"
     }
@@ -191,6 +210,7 @@
   "sendPage": {
     "waiting": "Esperando respuesta...",
     "rejected": "El destino ha rechazado la petición.",
+    "tooManyAttempts": "@:web.tooManyAttempts",
     "busy": "El destino está ocupado con otra petición."
   },
   "progressPage": {
@@ -222,6 +242,8 @@
     "noRequests": "Aún no hay solicitudes.",
     "encryption": "@:settingsTab.network.encryption",
     "autoAccept": "Aceptar solicitudes automáticamente",
+    "requirePin": "Requerir PIN",
+    "pinHint": "El PIN es \"{pin}\"",
     "encryptionHint": "LocalSend utiliza un certificado autofirmado. Necesitas aceptarlo en el navegador.",
     "pendingRequests": "Solicitudes pendientes: {n}"
   },
@@ -233,6 +255,7 @@
     ],
     "author": "Autor",
     "contributors": "Colaboradores",
+    "packagers": "Empaquetadores",
     "translators": "Traductores"
   },
   "donationPage": {
@@ -252,6 +275,10 @@
     "addFile": {
       "title": "Añadir a selección",
       "content": "¿Qué quieres añadir?"
+    },
+    "openFile": {
+      "title": "Abrir archivo",
+      "content": "¿Quieres abrir el archivo recibido?"
     },
     "addressInput": {
       "title": "Introducir dirección",
@@ -343,27 +370,49 @@
       "title": "@:general.quickSave",
       "content": "Las solicitudes de archivos se aceptan automáticamente. Ten en cuenta que cualquiera en la red local podrá enviarte archivos."
     },
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": [
+        "Se aceptarán automáticamente los archivos recibidos de los dispositivos incluidos en su lista de favoritos.",
+        "Advertencia: esta opción no es completamente segura, cualquiera que conozca la huella digital de sus dispositivos favoritos aún puede enviarle archivos.",
+        "Sin embargo, esta opción sigue siendo más segura que permitir cualquier dispositivo"
+      ]
+    },
+    "pin": {
+      "title": "Ingresar PIN"
+    },
     "sendModeHelp": {
       "title": "Modos de envío",
       "single": "Enviar archivos a un solo destino. La selección se borrará una vez finalizada la transferencia.",
       "multiple": "Enviar archivos a múltiples destinos. La selección no se borrará.",
       "link": "Los destinatarios que no tengan LocalSend instalado pueden descargar los archivos seleccionados abriendo el enlace en su navegador."
+    },
+    "zoom": {
+      "title": "URL"
     }
+  },
+  "sanitization": {
+    "empty": "El nombre del archivo no puede estar vacío",
+    "invalid": "El nombre del archivo contiene caracteres no válidos"
   },
   "tray": {
     "@info": "Las directrices de Apple son muy estrictas en cuanto a la expresión 'cerrar'.",
     "open": "@:general.open",
-    "close": "Cerrar LocalSend"
+    "close": "Cerrar LocalSend",
+    "closeWindows": "Cerrar"
   },
   "web": {
     "waiting": "@:sendPage.waiting",
+    "enterPin": "Ingresar PIN",
+    "invalidPin": "PIN Inválido",
+    "tooManyAttempts": "Demasiados intentos",
     "rejected": "Rechazado",
     "files": "Archivos",
     "fileName": "Nombre del archivo",
     "size": "Tamaño"
   },
   "assetPicker": {
-    "@info": "Traducciones de la herramienta de selección de medios para Android e Iphone",
+    "@info": "Traducciones de la herramienta de selección de medios para Android e iPhone",
     "confirm": "Confirmar",
     "cancel": "Cancelar",
     "edit": "Editar",
@@ -375,9 +424,9 @@
     "emptyList": "Lista vacía",
     "unSupportedAssetType": "Tipo de archivo no soportado.",
     "unableToAccessAll": "No se puede acceder a los archivos del dispositivo.",
-    "viewingLimitedAssetsTip": "Ver sólo los archivos y álbumes accesibles para la aplicación.",
+    "viewingLimitedAssetsTip": "Ver solo los archivos y álbumes accesibles para la aplicación.",
     "changeAccessibleLimitedAssets": "Haga clic para actualizar los archivos accesibles",
-    "accessAllTip": "La aplicación sólo puede acceder a algunos archivos del dispositivo. Ve a la configuración del sistema y permite que la aplicación acceda a todos los archivos multimedia del dispositivo.",
+    "accessAllTip": "La aplicación solo puede acceder a algunos archivos del dispositivo. Ve a la configuración del sistema y permite que la aplicación acceda a todos los archivos multimedia del dispositivo.",
     "goToSystemSettings": "Ir a los ajustes del sistema",
     "accessLimitedAssets": "Continuar con acceso limitado",
     "accessiblePathName": "Archivos accesibles",

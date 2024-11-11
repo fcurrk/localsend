@@ -3,24 +3,37 @@
     "Here are translations that exist in <en> but not in <tr>.",
     "After editing this file, you can run 'dart run slang apply --locale=tr' to quickly apply the newly added translations."
   ],
-  "sendTab": {
-    "manualSending": "Manual sending"
+  "general": {
+    "quickSaveFromFavorites": "\"Favoriler\" için Hızlı Kaydet"
+  },
+  "receiveTab": {
+    "quickSave": {
+      "off": "@:general.off",
+      "favorites": "Favoriler",
+      "on": "@:general.on"
+    }
   },
   "settingsTab": {
-    "general": {
-      "saveWindowPlacementWindows": "Save window position after exit"
+    "receive": {
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites"
+    },
+    "network": {
+      "useSystemName": "Sistem adını kullan",
+      "generateRandomAlias": "Rastgele bir takma ad oluştur"
     }
   },
-  "troubleshootPage": {
-    "noDiscovery": {
-      "symptom": "This device cannot discover other devices.",
-      "solution": "Please make sure that all devices are on the same Wi-Fi network and share the same configuration (port, multicast address, encryption). You can try to type the IP address of the target device manually. If this works, consider adding this device to the favorites so it can be automatically discovered in the future."
+  "dialogs": {
+    "openFile": {
+      "title": "Dosyayı Aç",
+      "content": "Alınan dosyayı açmak istiyor musunuz?"
+    },
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": [
+        "Dosya istekleri artık favoriler listenizdeki cihazlardan otomatik olarak kabul edilir.",
+        "Uyarı! Şu anda bu tamamen güvenli değil, çünkü favori listenizdeki herhangi bir cihazın parmak izine sahip bir saldırgan, size kısıtlama olmaksızın dosya gönderebilir.",
+        "Yine de bu seçenek, yerel ağdaki tüm kullanıcıların size kısıtlama olmaksızın dosya göndermesine izin vermekten daha güvenlidir."
+      ]
     }
-  },
-  "aboutPage": {
-    "packagers": "Packagers"
-  },
-  "tray": {
-    "closeWindows": "Exit"
   }
 }

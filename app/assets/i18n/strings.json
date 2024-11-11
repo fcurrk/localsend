@@ -28,6 +28,7 @@
     "open": "Open",
     "queue": "Queue",
     "quickSave": "Quick Save",
+    "quickSaveFromFavorites": "Quick Save for \"Favorites\"",
     "renamed": "Renamed",
     "reset": "Undo changes",
     "restart": "Restart",
@@ -46,6 +47,11 @@
       "ip": "IP:",
       "port": "Port:",
       "alias": "Device name:"
+    },
+    "quickSave": {
+      "off": "@:general.off",
+      "favorites": "Favorites",
+      "on": "@:general.on"
     }
   },
   "sendTab": {
@@ -108,6 +114,7 @@
     "receive": {
       "title": "Receive",
       "quickSave": "@:general.quickSave",
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
       "requirePin": "@:webSharePage.requirePin",
       "autoFinish": "Auto Finish",
       "destination": "Save to folder",
@@ -128,6 +135,8 @@
       "deviceModel": "Device model",
       "port": "Port",
       "discoveryTimeout": "Discovery Timeout",
+      "useSystemName": "Use system name",
+      "generateRandomAlias": "Generate random alias",
       "portWarning": "You might not be detected by other devices because you are using a custom port. (default: {defaultPort})",
       "encryption": "Encryption",
       "multicastGroup": "Multicast address",
@@ -158,7 +167,7 @@
     },
     "noConnection": {
       "symptom": "Both devices cannot discover each other nor can they share files.",
-      "solution": "Does the problem exist on both sides? If so, you need to make sure that both devices are on the same Wi-Fi network and share the same configuration (port, multicast address, encryption). The Wi-Fi network may not allow communication between participants (AP isolation). In this case, this option must be enabled on the router."
+      "solution": "Does the problem exist on both sides? If so, you need to make sure that both devices are on the same Wi-Fi network and share the same configuration (port, multicast address, encryption). The Wi-Fi network may not allow communication between participants due to Access Point (AP) Isolation. In this case, this option must be disabled on the router."
     }
   },
   "receiveHistoryPage": {
@@ -199,7 +208,7 @@
     "saveToGalleryOff": "Turned off automatically because there are folders."
   },
   "sendPage": {
-    "waiting": "Waiting for response...",
+    "waiting": "Waiting for response…",
     "rejected": "The recipient has rejected the request.",
     "tooManyAttempts": "@:web.tooManyAttempts",
     "busy": "The recipient is busy with another request."
@@ -222,8 +231,8 @@
   },
   "webSharePage": {
     "title": "Share via link",
-    "loading": "Starting server...",
-    "stopping": "Stopping server...",
+    "loading": "Starting server…",
+    "stopping": "Stopping server…",
     "error": "An error occurred while starting the server.",
     "openLink": {
       "one": "Open this link in your browser:",
@@ -337,6 +346,10 @@
       "title": "Add to selection",
       "content": "What do you want to add?"
     },
+    "openFile": {
+      "title": "Open file",
+      "content": "Do you want to open the received file?"
+    },
     "addressInput": {
       "title": "Enter address",
       "hashtag": "Hashtag",
@@ -425,7 +438,15 @@
     },
     "quickSaveNotice": {
       "title": "@:general.quickSave",
-      "content": "File requests are automatically accepted. Be aware that everyone on the local network can send you files."
+      "content": "File requests are now accepted automatically. Be aware that everyone on the local network can send you files."
+    },
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": [
+        "File requests are now accepted automatically from devices in your favorites list.",
+        "Warning! Currently, this is not entirely secure, as a hacker who has the fingerprint of any device from your favorites list can send you files without restriction.",
+        "However, this option is still safer than allowing all users on the local network to send you files without restriction."
+      ]
     },
     "pin": {
       "title": "Enter PIN"

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:common/constants.dart';
 import 'package:common/model/device.dart';
 import 'package:flutter/foundation.dart';
@@ -14,22 +13,24 @@ import 'package:localsend_app/pages/language_page.dart';
 import 'package:localsend_app/pages/tabs/settings_tab_controller.dart';
 import 'package:localsend_app/provider/settings_provider.dart';
 import 'package:localsend_app/provider/version_provider.dart';
+import 'package:localsend_app/util/alias_generator.dart';
 import 'package:localsend_app/util/device_type_ext.dart';
+import 'package:localsend_app/util/native/macos_channel.dart';
 import 'package:localsend_app/util/native/pick_directory_path.dart';
 import 'package:localsend_app/util/native/platform_check.dart';
 import 'package:localsend_app/widget/custom_dropdown_button.dart';
 import 'package:localsend_app/widget/dialogs/encryption_disabled_notice.dart';
 import 'package:localsend_app/widget/dialogs/pin_dialog.dart';
+import 'package:localsend_app/widget/dialogs/quick_save_from_favorites_notice.dart';
 import 'package:localsend_app/widget/dialogs/quick_save_notice.dart';
 import 'package:localsend_app/widget/dialogs/text_field_tv.dart';
+import 'package:localsend_app/widget/dialogs/text_field_with_actions.dart';
 import 'package:localsend_app/widget/labeled_checkbox.dart';
 import 'package:localsend_app/widget/local_send_logo.dart';
 import 'package:localsend_app/widget/responsive_list_view.dart';
 import 'package:refena_flutter/refena_flutter.dart';
 import 'package:routerino/routerino.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-final _isMacOSSandboxed = defaultTargetPlatform == TargetPlatform.macOS && Platform.environment['APP_SANDBOX_CONTAINER_ID'] != null;
 
 class SettingsTab extends StatelessWidget {
   const SettingsTab();
@@ -105,7 +106,7 @@ class SettingsTab extends StatelessWidget {
                       },
                     ),
                   ],
-                  if (checkPlatformIsDesktop() && !_isMacOSSandboxed) ...[
+                  if (checkPlatformIsDesktop()) ...[
                     _BooleanEntry(
                       label: t.settingsTab.general.launchAtStartup,
                       value: vm.autoStart,
@@ -158,6 +159,17 @@ class SettingsTab extends StatelessWidget {
                   },
                 ),
                 _BooleanEntry(
+                  label: t.settingsTab.receive.quickSaveFromFavorites,
+                  value: vm.settings.quickSaveFromFavorites,
+                  onChanged: (b) async {
+                    final old = vm.settings.quickSaveFromFavorites;
+                    await ref.notifier(settingsProvider).setQuickSaveFromFavorites(b);
+                    if (!old && b && context.mounted) {
+                      await QuickSaveFromFavoritesNotice.open(context);
+                    }
+                  },
+                ),
+                _BooleanEntry(
                   label: t.settingsTab.receive.requirePin,
                   value: vm.settings.receivePin != null,
                   onChanged: (b) async {
@@ -191,11 +203,17 @@ class SettingsTab extends StatelessWidget {
                       onPressed: () async {
                         if (vm.settings.destination != null) {
                           await ref.notifier(settingsProvider).setDestination(null);
+                          if (defaultTargetPlatform == TargetPlatform.macOS) {
+                            await removeExistingDestinationAccess();
+                          }
                           return;
                         }
 
                         final directory = await pickDirectoryPath();
                         if (directory != null) {
+                          if (defaultTargetPlatform == TargetPlatform.macOS) {
+                            await persistDestinationFolderAccess(directory);
+                          }
                           await ref.notifier(settingsProvider).setDestination(directory);
                         }
                       },
@@ -302,12 +320,43 @@ class SettingsTab extends StatelessWidget {
                 ),
                 _SettingsEntry(
                   label: t.settingsTab.network.alias,
-                  child: TextFieldTv(
+                  child: TextFieldWithActions(
                     name: t.settingsTab.network.alias,
                     controller: vm.aliasController,
                     onChanged: (s) async {
                       await ref.notifier(settingsProvider).setAlias(s);
                     },
+                    actions: [
+                      Tooltip(
+                        message: t.settingsTab.network.generateRandomAlias,
+                        child: IconButton(
+                          onPressed: () async {
+                            // Generates random alias
+                            final newAlias = generateRandomAlias();
+
+                            // Update the TextField with the new alias
+                            vm.aliasController.text = newAlias;
+
+                            // Persist the new alias using the settingsProvider
+                            await ref.notifier(settingsProvider).setAlias(newAlias);
+                          },
+                          icon: const Icon(Icons.casino),
+                        ),
+                      ),
+                      Tooltip(
+                        message: t.settingsTab.network.useSystemName,
+                        child: IconButton(
+                          onPressed: () async {
+                            // Uses dart.io to find the systems hostname
+                            final newAlias = Platform.localHostname;
+
+                            vm.aliasController.text = newAlias;
+                            await ref.notifier(settingsProvider).setAlias(newAlias);
+                          },
+                          icon: const Icon(Icons.desktop_windows_rounded),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 if (vm.advanced)
@@ -465,7 +514,10 @@ class SettingsTab extends StatelessWidget {
                   label: t.settingsTab.advancedSettings,
                   value: vm.advanced,
                   labelFirst: true,
-                  onChanged: (b) => vm.onTapAdvanced(b == true),
+                  onChanged: (b) async {
+                    vm.onTapAdvanced(b == true);
+                    await ref.notifier(settingsProvider).setAdvancedSettingsEnabled(b == true);
+                  },
                 ),
                 const SizedBox(width: 10),
               ],

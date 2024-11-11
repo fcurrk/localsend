@@ -28,6 +28,7 @@
     "open": "باز کردن",
     "queue": "صف",
     "quickSave": "ذخیره سریع",
+    "quickSaveFromFavorites": "ذخیر سریع برای \"Favorites\"",
     "renamed": "تغییر نام یافت",
     "reset": "بازنشانی",
     "restart": "راه اندازی مجدد",
@@ -46,6 +47,11 @@
       "ip": "آی پی:",
       "port": "پورت:",
       "alias": "نام مستعار:"
+    },
+    "quickSave": {
+      "off": "@:general.off",
+      "favorites": "علاقه‌مندی‌ها",
+      "on": "@:general.on"
     }
   },
   "sendTab": {
@@ -67,6 +73,7 @@
     "nearbyDevices": "دستگاه های  اطراف",
     "thisDevice": "این دستگاه",
     "scan": "جستجوی دستگاه ها",
+    "manualSending": "ارسال دستی",
     "sendMode": "حالت ارسال",
     "sendModes": {
       "single": "یک دریافت کننده",
@@ -97,6 +104,7 @@
         "system": "سیستم"
       },
       "saveWindowPlacement": "خروج: ذخیره قرار دادن پنجره",
+      "saveWindowPlacementWindows": "ذخیره موقعیت پنجره پس از خروج",
       "minimizeToTray": "خروج: ارسال برنامه به سیستم تری",
       "launchAtStartup": "شروع خودکار پس از ورود به سیستم",
       "launchMinimized": "شروع خودکار: شروع به صورت پنجره پنهان",
@@ -106,6 +114,7 @@
     "receive": {
       "title": "دریافت",
       "quickSave": "@:general.quickSave",
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
       "requirePin": "@:webSharePage.requirePin",
       "autoFinish": "پایان خودکار",
       "destination": "مقصد",
@@ -126,6 +135,8 @@
       "deviceModel": "مدل دستگاه",
       "port": "پورت",
       "discoveryTimeout": "مدت یابش",
+      "useSystemName": "استفاده از نام سیستم",
+      "generateRandomAlias": "ایجاد نام مستعار تصادفی",
       "portWarning": "ممکن است به دلیل استفاده از یک پورت سفارشی، دستگاه های دیگر شما را شناسایی نکنند (پیشفرض : {defaultPort})",
       "encryption": "رمزنگاری",
       "multicastGroup": "چندپخشی",
@@ -306,7 +317,7 @@
       "توت",
       "بلوبری",
       "کلم",
-      "هویچ",
+      "هویج",
       "گیلاس",
       "نارگیل",
       "انگور",
@@ -334,6 +345,10 @@
     "addFile": {
       "title": "افزودن به انتخاب شده ها",
       "content": "چه چیزی می خواهید اضافه کنید؟"
+    },
+    "openFile": {
+      "title": "باز کردن فایل",
+      "content": "آیا می خواهید فایل دریافتی را باز کنید؟"
     },
     "addressInput": {
       "title": "آدرس را وارد کنید",
@@ -425,6 +440,14 @@
       "title": "@:general.quickSave",
       "content": "درخواست ها به صورت خودکار پذیرفته می شوند. توجه داشته باشید که همه افراد در شبکه محلی می توانند برای شما فایل ارسال کنند"
     },
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": [
+        "درخواست‌ها اکنون به طور خودکار از دستگاه‌های موجود در لیست علاقه‌مندی‌ها پذیرفته می‌شود",
+        "هشدار: این روش در حال حاضر کاملاً ایمن نیست، زیرا در صورت دسترسی هکری به دستگاه‌های موجود در لیست علاقه‌مندی‌ها، می‌تواند برای شما فایل ارسال کند",
+        "با این حال، این گزینه از اجازه دادن به هر دستگاهی ایمن‌تر است"
+      ]
+    },
     "pin": {
       "title": "پین را وارد کنید"
     },
@@ -445,7 +468,8 @@
   "tray": {
     "@info": "Apple Guidelines are very strict about the 'close' wording.",
     "open": "@:general.open",
-    "close": "خروج از لوکال سند"
+    "close": "خروج از لوکال سند",
+    "closeWindows": "خروج"
   },
   "web": {
     "waiting": "@:sendPage.waiting",

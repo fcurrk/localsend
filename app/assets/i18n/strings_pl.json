@@ -28,6 +28,7 @@
     "open": "Otwórz",
     "queue": "Kolejka",
     "quickSave": "Szybki zapis",
+    "quickSaveFromFavorites": "Szybki zapis dla „Ulubionych”",
     "renamed": "Przemianowany",
     "reset": "Resetowanie",
     "restart": "Restartuj",
@@ -46,6 +47,11 @@
       "ip": "IP:",
       "port": "Port:",
       "alias": "Alias:"
+    },
+    "quickSave": {
+      "off": "@:general.off",
+      "favorites": "Ulubione",
+      "on": "@:general.on"
     }
   },
   "sendTab": {
@@ -108,6 +114,7 @@
     "receive": {
       "title": "Odbierz",
       "quickSave": "@:general.quickSave",
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
       "requirePin": "@:webSharePage.requirePin",
       "autoFinish": "Zakończ automatycznie",
       "destination": "Miejsce docelowe",
@@ -128,6 +135,8 @@
       "deviceModel": "Model urządzenia",
       "port": "Port",
       "discoveryTimeout": "Limit czasu wykrywania",
+      "useSystemName": "Użyj nazwy systemu",
+      "generateRandomAlias": "Wygeneruj losowy alias",
       "portWarning": "Inne urządzenia mogą nie wykryć Twojego urządzenia, ponieważ używasz niestandardowego portu. (domyślnie: {defaultPort})",
       "encryption": "Szyfrowanie",
       "multicastGroup": "Multicast",
@@ -158,7 +167,7 @@
     },
     "noConnection": {
       "symptom": "Oba urządzenia nie mogą się nawzajem wykryć ani dzielić się plikami.",
-      "solution": "Problem istnieje po obu stronach? Upewnij się, że oba urządzenia są w tej samej sieci Wi-Fi i mają takie same ustawienia (port, adres multicast, szyfrowanie). Wi-Fi może nie zezwalać na komunikację między uczestnikami. W takim przypadku opcję tę należy włączyć w routerze."
+      "solution": "Problem istnieje po obu stronach? Upewnij się, że oba urządzenia są w tej samej sieci Wi-Fi i mają takie same ustawienia (port, adres multicast, szyfrowanie). Wi-Fi może nie zezwalać na komunikację między uczestnikami z powodu izolacji punktu dostępu (AP). W takim przypadku tę opcję należy wyłączyć w routerze."
     }
   },
   "receiveHistoryPage": {
@@ -199,7 +208,7 @@
     "saveToGalleryOff": "Wyłączono automatycznie, ponieważ istnieją katalogi."
   },
   "sendPage": {
-    "waiting": "Czekanie na odpowiedź...",
+    "waiting": "Czekanie na odpowiedź…",
     "rejected": "Odbiorca odrzucił żądanie.",
     "tooManyAttempts": "@:web.tooManyAttempts",
     "busy": "Odbiorca jest zajęty innym żądaniem."
@@ -222,8 +231,8 @@
   },
   "webSharePage": {
     "title": "Udostępnij przez link",
-    "loading": "Uruchamianie serwera...",
-    "stopping": "Zatrzymywanie serwera...",
+    "loading": "Uruchamianie serwera…",
+    "stopping": "Zatrzymywanie serwera…",
     "error": "Wystąpił błąd podczas uruchamiania serwera.",
     "openLink": {
       "one": "Otwórz ten link w przeglądarce:",
@@ -234,7 +243,7 @@
     "encryption": "@:settingsTab.network.encryption",
     "autoAccept": "Automatycznie akceptuj żądania",
     "requirePin": "Wymagaj kodu PIN",
-    "pinHint": "Kod PIN to \"{pin}\"",
+    "pinHint": "Kod PIN to „{pin}”",
     "encryptionHint": "LocalSend używa samopodpisanego certyfikatu. Musisz go zaakceptować w przeglądarce.",
     "pendingRequests": "Oczekujące żądania: {n}"
   },
@@ -267,6 +276,10 @@
       "title": "Dodaj do wyboru",
       "content": "Co chcesz dodać?"
     },
+    "openFile": {
+      "title": "Otwórz plik",
+      "content": "Czy chcesz otworzyć odebrany plik?"
+    },
     "addressInput": {
       "title": "Wpisz adres",
       "hashtag": "Hashtag",
@@ -279,7 +292,7 @@
     },
     "cannotOpenFile": {
       "title": "Nie można otworzyć pliku",
-      "content": "Nie można otworzyć \"{file}\". Czy ten plik został przeniesiony, zmieniono mu nazwę lub usunięto?"
+      "content": "Nie można otworzyć „{file}”. Czy ten plik został przeniesiony, zmieniono mu nazwę lub usunięto?"
     },
     "encryptionDisabledNotice": {
       "title": "Szyfrowanie wyłączone",
@@ -295,7 +308,7 @@
     },
     "favoriteDeleteDialog": {
       "title": "Usuń z ulubionych",
-      "content": "Czy na pewno chcesz usunąć z ulubionych \"{name}\"?"
+      "content": "Czy na pewno chcesz usunąć z ulubionych „{name}”?"
     },
     "favoriteEditDialog": {
       "titleAdd": "Dodaj do ulubionych",
@@ -356,6 +369,14 @@
     "quickSaveNotice": {
       "title": "@:general.quickSave",
       "content": "Żądania plików są akceptowane automatycznie. Pamiętaj, że każdy w sieci lokalnej może przesyłać Ci pliki."
+    },
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": [
+        "Żądania plików są teraz akceptowane automatycznie z urządzeń na liście ulubionych.",
+        "Uwaga! Obecnie nie jest to całkowicie bezpieczne, ponieważ haker, który ma odcisk palca dowolnego urządzenia z listy ulubionych, może wysyłać Ci pliki bez ograniczeń.",
+        "Jednak ta opcja jest nadal bezpieczniejsza niż umożliwienie wszystkim użytkownikom w sieci lokalnej wysyłanie plików bez ograniczeń."
+      ]
     },
     "pin": {
       "title": "Wpisz kod PIN"

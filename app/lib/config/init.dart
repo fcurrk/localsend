@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:common/api_route_builder.dart';
@@ -7,10 +6,10 @@ import 'package:common/constants.dart';
 import 'package:common/isolate.dart';
 import 'package:common/model/dto/file_dto.dart';
 import 'package:common/model/dto/multicast_dto.dart';
-import 'package:common/util/dio.dart';
 import 'package:common/util/logger.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:localsend_app/config/refena.dart';
@@ -23,8 +22,10 @@ import 'package:localsend_app/provider/device_info_provider.dart';
 import 'package:localsend_app/provider/network/nearby_devices_provider.dart';
 import 'package:localsend_app/provider/network/server/server_provider.dart';
 import 'package:localsend_app/provider/persistence_provider.dart';
+
 // [FOSS_REMOVE_START]
 import 'package:localsend_app/provider/purchase_provider.dart';
+
 // [FOSS_REMOVE_END]
 import 'package:localsend_app/provider/selection/selected_sending_files_provider.dart';
 import 'package:localsend_app/provider/settings_provider.dart';
@@ -33,16 +34,19 @@ import 'package:localsend_app/provider/window_dimensions_provider.dart';
 import 'package:localsend_app/util/i18n.dart';
 import 'package:localsend_app/util/native/autostart_helper.dart';
 import 'package:localsend_app/util/native/cache_helper.dart';
+import 'package:localsend_app/util/native/content_uri_helper.dart';
 import 'package:localsend_app/util/native/context_menu_helper.dart';
 import 'package:localsend_app/util/native/cross_file_converters.dart';
 import 'package:localsend_app/util/native/device_info_helper.dart';
-import 'package:localsend_app/util/native/open_file_receiver.dart';
+import 'package:localsend_app/util/native/macos_channel.dart';
 import 'package:localsend_app/util/native/platform_check.dart';
 import 'package:localsend_app/util/native/tray_helper.dart';
+import 'package:localsend_app/util/rhttp.dart';
 import 'package:localsend_app/util/ui/dynamic_colors.dart';
 import 'package:localsend_app/util/ui/snackbar.dart';
 import 'package:logging/logging.dart';
 import 'package:refena_flutter/refena_flutter.dart';
+import 'package:rhttp/rhttp.dart';
 import 'package:share_handler/share_handler.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -55,6 +59,8 @@ Future<RefenaContainer> preInit(List<String> args) async {
   initLogger(args.contains('-v') || args.contains('--verbose') ? Level.ALL : Level.INFO);
   MapperContainer.globals.use(const FileDtoMapper());
 
+  await Rhttp.init();
+
   final dynamicColors = await getDynamicColors();
 
   final persistenceService = await PersistenceService.initialize(
@@ -65,27 +71,27 @@ Future<RefenaContainer> preInit(List<String> args) async {
     await enableContextMenu();
   }
 
-  initI18n();
+  await initI18n();
 
   bool startHidden = false;
   if (checkPlatformIsDesktop()) {
     // Check if this app is already open and let it "show up".
     // If this is the case, then exit the current instance.
 
-    final dio = createDio(const Duration(milliseconds: 100), persistenceService.getSecurityContext());
+    final client = createRhttpClient(const Duration(milliseconds: 100), persistenceService.getSecurityContext());
 
     try {
-      await dio.post(
+      await client.post(
         ApiRoute.show.targetRaw(
           '127.0.0.1',
           persistenceService.getPort(),
           persistenceService.isHttps(),
           peerProtocolVersion,
         ),
-        queryParameters: {
+        query: {
           'token': persistenceService.getShowToken(),
         },
-        data: jsonEncode({
+        body: HttpBody.json({
           'args': args,
         }),
       );
@@ -105,8 +111,18 @@ Future<RefenaContainer> preInit(List<String> args) async {
     if (args.contains(startHiddenFlag)) {
       // keep this app hidden
       startHidden = true;
+    } else if (defaultTargetPlatform == TargetPlatform.macOS) {
+      startHidden = await isLaunchedAsLoginItem() && await getLaunchAtLoginMinimized();
+    }
+
+    if (startHidden) {
+      unawaited(hideToTray());
     } else {
       await WindowManager.instance.show();
+    }
+
+    if (defaultTargetPlatform == TargetPlatform.macOS) {
+      await setupStatusBar();
     }
   }
 
@@ -122,6 +138,7 @@ Future<RefenaContainer> preInit(List<String> args) async {
       dynamicColorsProvider.overrideWithValue(dynamicColors),
       sleepProvider.overrideWithInitialState((ref) => startHidden),
     ],
+    platformHint: RefenaScope.getPlatformHint(), // help Refena know the correct platform
   );
 
   // initialize multi-threading
@@ -130,6 +147,11 @@ Future<RefenaContainer> preInit(List<String> args) async {
     return IsolateController(
       initialState: ParentIsolateState.initial(
         SyncState(
+          init: () async {
+            await Rhttp.init();
+          },
+          rootIsolateToken: RootIsolateToken.instance!,
+          httpClientFactory: RhttpWrapper.create,
           securityContext: persistenceService.getSecurityContext(),
           deviceInfo: ref.read(deviceInfoProvider),
           alias: settings.alias,
@@ -144,7 +166,9 @@ Future<RefenaContainer> preInit(List<String> args) async {
     );
   }));
 
-  await container.redux(parentIsolateProvider).dispatchAsync(IsolateSetupAction());
+  await container.redux(parentIsolateProvider).dispatchAsync(IsolateSetupAction(
+        uriContentStreamResolver: AndroidUriContentStreamResolver(),
+      ));
 
   return container;
 }
@@ -179,19 +203,22 @@ Future<void> postInit(BuildContext context, Ref ref, bool appStart) async {
 
   if (appStart) {
     if (defaultTargetPlatform == TargetPlatform.macOS) {
-      final files = await getOpenedFiles();
-      if (files.isNotEmpty) {
-        await ref.global.dispatchAsync(_HandleAppStartArgumentsAction(
-          args: files,
-        ));
-      }
-
-      // handle future dropped files
-      getOpenedFilesStream().listen((files) {
+      // handle dropped files
+      pendingFilesStream.listen((files) {
         ref.global.dispatchAsync(_HandleAppStartArgumentsAction(
           args: files,
         ));
       });
+
+      // handle dropped strings
+      pendingStringsStream.listen((pendingStrings) {
+        for (final string in pendingStrings) {
+          ref.redux(selectedSendingFilesProvider).dispatch(AddMessageAction(message: string));
+        }
+        ref.redux(homePageControllerProvider).dispatch(ChangeTabAction(HomeTab.send));
+      });
+
+      await setupMethodCallHandler();
     } else {
       final args = ref.read(appArgumentsProvider);
       await ref.global.dispatchAsync(_HandleAppStartArgumentsAction(

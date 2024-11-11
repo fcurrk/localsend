@@ -4,7 +4,7 @@
 ; Copy app/assets/packaging/logo-256.ico to D:\inno\logo-256.ico
 
 #define MyAppName "LocalSend"
-#define MyAppVersion "1.15.4"
+#define MyAppVersion "1.16.2"
 #define MyAppPublisher "Tien Do Nam"
 #define MyAppURL "https://localsend.org"
 #define MyAppExeName "localsend_app.exe"
@@ -28,6 +28,7 @@ PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=D:\inno-result
 OutputBaseFilename=localsend
 SetupIconFile=D:\inno\logo.ico
+UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -68,23 +69,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "D:\inno\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\connectivity_plus_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\desktop_drop_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\dynamic_color_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\file_selector_windows_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\flutter_windows.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\gal_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\msvcp140.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\pasteboard_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\permission_handler_windows_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\screen_retriever_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\tray_manager_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\uri_content_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\url_launcher_windows_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\vcruntime140.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\vcruntime140_1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\windows_taskbar_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\inno\window_manager_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\inno\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\inno\data\*"; DestDir: "{app}\data"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

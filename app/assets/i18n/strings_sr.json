@@ -28,6 +28,7 @@
     "open": "Otvori",
     "queue": "Stavi u Queue",
     "quickSave": "Brzo snimi",
+    "quickSaveFromFavorites": "Brzo snimi u \"Omiljeni\"",
     "renamed": "Preimenovano",
     "reset": "Resetuj",
     "restart": "Restartuj",
@@ -46,6 +47,11 @@
       "ip": "IP:",
       "port": "Port:",
       "alias": "Ime uredjaja:"
+    },
+    "quickSave": {
+      "off": "@:general.off",
+      "favorites": "Omiljeni",
+      "on": "@:general.on"
     }
   },
   "sendTab": {
@@ -108,6 +114,7 @@
     "receive": {
       "title": "Primanje",
       "quickSave": "@:general.quickSave",
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
       "requirePin": "@:webSharePage.requirePin",
       "autoFinish": "Automatski završi",
       "destination": "Destinacija",
@@ -128,6 +135,8 @@
       "deviceModel": "Model uredjaja",
       "port": "Port",
       "discoveryTimeout": "Otkrivanje otkazano",
+      "useSystemName": "Koristi ime sistema",
+      "generateRandomAlias": "Generiši slučajni pseudonim",
       "portWarning": "Možda nećete biti pronadjeni od strane drugih uredjaja jer koristite custom Port.(default: {defaultPort})",
       "encryption": "Enkripcija",
       "multicastGroup": "Multicast",
@@ -337,6 +346,10 @@
       "title": "Dodaj u Selekciju",
       "content": "Šta želiš da dodaš?"
     },
+    "openFile": {
+      "title": "Otvori fajl",
+      "content": "Da li želite da otvorite primljeni fajl?"
+    },
     "addressInput": {
       "title": "Upiši adresu",
       "hashtag": "Hashtag",
@@ -426,6 +439,14 @@
     "quickSaveNotice": {
       "title": "@:general.quickSave",
       "content": "Zahtevi za slanje fajlova su automatski prihvaćeni. Primite k znanju da bilo ko na lokalnoj mreži može da vam pošalje fajl."
+    },
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": [
+        "Zahtevi za primanje fajlova su automatski prihvaćeni od uredjaja u listi Omiljenih.",
+        "Upozorenje: Ovo trenutno nije potpuno bezbedno, jer napadač koji zna Fingerprint vašeg uredjaja u Omiljenima takodje može da vam pošalje fajl.",
+        "Ipak, ovo je i dalje sigurnije nego dozvoliti prijem sa svih uredjaja."
+      ]
     },
     "pin": {
       "title": "Unesi PIN"

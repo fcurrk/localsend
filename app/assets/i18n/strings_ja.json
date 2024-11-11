@@ -28,6 +28,7 @@
     "open": "開く",
     "queue": "順番待ち",
     "quickSave": "クイックセーブ",
+    "quickSaveFromFavorites": "「お気に入り」からクイックセーブ",
     "renamed": "改名済み",
     "reset": "リセット",
     "restart": "再起動",
@@ -46,6 +47,11 @@
       "ip": "IP:",
       "port": "ポート:",
       "alias": "別名:"
+    },
+    "quickSave": {
+      "off": "@:general.off",
+      "favorites": "お気に入り",
+      "on": "@:general.on"
     }
   },
   "sendTab": {
@@ -67,6 +73,7 @@
     "nearbyDevices": "近くのデバイス",
     "thisDevice": "このデバイス",
     "scan": "デバイスを検索",
+    "manualSending": "手動送信",
     "sendMode": "送信モード",
     "sendModes": {
       "single": "一対一送信",
@@ -97,6 +104,7 @@
         "system": "システム"
       },
       "saveWindowPlacement": "終了時: ウィンドウ配置を記憶",
+      "saveWindowPlacementWindows": "終了時にウィンドウ配置を記憶",
       "minimizeToTray": "終了時: トレイに最小化",
       "launchAtStartup": "ログイン時に自動で起動",
       "launchMinimized": "自動起動時: 隠れた状態で開始",
@@ -106,6 +114,7 @@
     "receive": {
       "title": "受信",
       "quickSave": "@:general.quickSave",
+      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
       "requirePin": "@:webSharePage.requirePin",
       "autoFinish": "自動で完了",
       "destination": "保存先",
@@ -126,6 +135,8 @@
       "deviceModel": "デバイスモデル",
       "port": "ポート",
       "discoveryTimeout": "探索がタイムアウトしました",
+      "useSystemName": "システム名を使用",
+      "generateRandomAlias": "ランダムな別名を生成",
       "portWarning": "ポートが変更されているため、このデバイスが他のデバイスから検出されなくなる場合があります。(デフォルト: {defaultPort})",
       "encryption": "暗号化",
       "multicastGroup": "マルチキャスト",
@@ -149,6 +160,10 @@
       "symptom": "このアプリから他のデバイスへはファイルを送信できるのに、他のデバイスからこのデバイスへはファイルが送信できない。",
       "solution": "ファイアウォールに問題があると思われます。ポート {port} の受け入れ (UDPとTCP) を許可することでこの問題を解決できます。",
       "openFirewall": "ファイアウォールを開く"
+    },
+    "noDiscovery": {
+      "symptom": "このデバイスで他のデバイスを見つけられない。",
+      "solution": "すべてのデバイスが同じWi-Fiネットワーク上にあり、各種設定(ポート、マルチキャストアドレス、暗号化)が一致していることを確認してください。もしくは、送信先デバイスのIPアドレスを手動で入力することもできます。これでうまくいく場合は、そのデバイスをお気に入りに追加して、今後自動的に検出できるようにすることもご検討ください。"
     },
     "noConnection": {
       "symptom": "どちらのデバイスも互いに表示されず、ファイルも共有できない。",
@@ -240,6 +255,7 @@
     ],
     "author": "制作者",
     "contributors": "貢献者",
+    "packagers": "パッケージ協力者",
     "translators": "翻訳者"
   },
   "donationPage": {
@@ -259,6 +275,10 @@
     "addFile": {
       "title": "選択に追加",
       "content": "何を追加しますか？"
+    },
+    "openFile": {
+      "title": "ファイルを開く",
+      "content": "受信したファイルを開きますか？"
     },
     "addressInput": {
       "title": "アドレスを入力",
@@ -350,6 +370,14 @@
       "title": "@:general.quickSave",
       "content": "ファイルリクエストが自動で承諾されます。ローカルネットワーク内の全員がファイルを送信できるので注意してください。"
     },
+    "quickSaveFromFavoritesNotice": {
+      "title": "@:general.quickSaveFromFavorites",
+      "content": [
+        "お気に入りリストにあるデバイスからのファイルリクエストを自動的に受け入れます。",
+        "警告 現時点では、お気に入りリストのデバイスと一致するフィンガープリントがあればハッカーが無制限にファイルを送信できてしまうため、この設定は完全に安全とは言えません。",
+        "ですが、この設定はローカルネットワーク上のすべてのユーザーに無制限のファイル送信を許可するよりはまだ安全です。"
+      ]
+    },
     "pin": {
       "title": "PINコードを入力"
     },
@@ -370,7 +398,8 @@
   "tray": {
     "@info": "Apple Guidelines are very strict about the 'close' wording.",
     "open": "@:general.open",
-    "close": "LocalSendを終了"
+    "close": "LocalSendを終了",
+    "closeWindows": "終了"
   },
   "web": {
     "waiting": "@:sendPage.waiting",

@@ -1,13 +1,16 @@
 # LocalSend
 
 [![CI status][ci-badge]][ci-workflow]
+[![Translations][translate-badge]][translate-link]
 
 [ci-badge]: https://github.com/localsend/localsend/actions/workflows/ci.yml/badge.svg
 [ci-workflow]: https://github.com/localsend/localsend/actions/workflows/ci.yml
+[translate-badge]: https://hosted.weblate.org/widget/localsend/app/svg-badge.svg
+[translate-link]: https://hosted.weblate.org/engage/localsend/
 
 [Homepage][homepage] • [Discord][discord] • [GitHub][github] • [Codeberg][codeberg]
 
-[English](README.md) • [中文](README_ZH.md) • [日本語](README_JA.md) • [ภาษาไทย](README_TH.md) • [Filipino](README_PH.md) • [Polski](README_PL.md)
+[English](README.md) • [中文](readme_i18n/README_ZH.md) • [日本語](readme_i18n/README_JA.md) • [ภาษาไทย](readme_i18n/README_TH.md) • [Filipino](readme_i18n/README_PH.md) • [Polski](readme_i18n/README_PL.md) • [Español](readme_i18n/README_ES.md) • [Tiếng Việt](readme_i18n/README_VI.md) • [Portugês Brasil](readme_i18n/README_PT_BR.md) • [Italiano](readme_i18n/README_IT.md) • [Indonesia](readme_i18n/README_ID.md) • [ភាសាខ្មែរ](readme_i18n/README_KM.md) • [Français](readme_i18n/README_FR.md) • [فارسی](readme_i18n/README_FA.md)   • [Turkish](readme_i18n/README_TR.md)
 
 [homepage]: https://localsend.org
 [discord]: https://discord.gg/GSRWmQNP87
@@ -63,13 +66,23 @@ Read more about [distribution channels][].
 [winget]: https://github.com/microsoft/winget-pkgs/tree/master/manifests/l/LocalSend/LocalSend
 [scoop]: https://scoop.sh/#/apps?s=0&d=1&o=true&q=localsend&id=fb88113be361ca32c0dcac423cb4afdeda0b0c66
 [chocolatey]: https://community.chocolatey.org/packages/localsend
-[homebrew]: https://github.com/localsend/homebrew-localsend
+[homebrew]: https://formulae.brew.sh/cask/localsend
 [flathub]: https://flathub.org/apps/details/org.localsend.localsend_app
 [nixpkgs]: https://search.nixos.org/packages?show=localsend
 [snap]: https://snapcraft.io/localsend
 [aur]: https://aur.archlinux.org/packages/localsend-bin
 [latest]: https://github.com/localsend/localsend/releases/latest
 [distribution channels]: https://github.com/localsend/localsend/blob/main/CONTRIBUTING.md#distribution
+
+**Compatibility**
+
+| Platform | Minimum Version | Note                                                                                                                        |
+|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Android  | 5.0             | -                                                                                                                           |
+| iOS      | 12.0            | -                                                                                                                           |
+| macOS    | 11 Big Sur      | Use OpenCore Legacy Patcher 2.0.2 (See [#1005](https://github.com/localsend/localsend/issues/1005#issuecomment-2449899384)) |
+| Windows  | 10              | The last version to support Windows 7 is v1.15.4. There might be backports of newer versions for Windows 7 in the future.   |
+| Linux    | N.A.            | -                                                                                                                           |
 
 ## Setup
 
@@ -126,22 +139,15 @@ We welcome contributions from anyone interested in helping improve LocalSend. If
 
 ### Translation
 
-You can help translate this app to other languages!
+You can help translate LocalSend into other languages. We use the [Weblate](https://hosted.weblate.org/projects/localsend/app) platform to manage translations.
 
-1. Fork this repository
-2. Choose one
-   - Add missing translations in existing languages: Only update `_missing_translations_<locale>.json` in [app/assets/i18n][i18n]
-   - Fix existing translations: Update `strings_<locale>.i18n.json` in [app/assets/i18n][i18n]
-   - Add new languages: Create a new file; see also: [locale codes][].
-3. Optional: Re-run this app
-   1. Run `cd app` to enter the app directory.
-   2. Make sure you have [run](#getting-started) this app once.
-   3. Update translations via `flutter pub run slang`
-   4. Run the app via `flutter run`
-   5. Open a pull request
+Alternatively, you can also contribute by forking this repository and adding translations manually.
 
-[i18n]: https://github.com/localsend/localsend/tree/main/app/assets/i18n
-[locale codes]: https://saimana.com/list-of-country-locale-code/
+The translations are located in the [app/assets/i18n](https://github.com/localsend/localsend/tree/main/app/assets/i18n) directory. Edit the `_missing_translations_<locale>.json` or `strings_<locale>.i18n.json` file to add or update translations.
+
+<a href="https://hosted.weblate.org/engage/localsend/">
+<img src="https://hosted.weblate.org/widget/localsend/app/multi-auto.svg" alt="Translation status" />
+</a>
 
 **_Take note:_ Fields decorated with `@` are not meant to be translated; they are not used in the app in any way, being merely informative text about the file or to give context to the translator.**
 
@@ -218,7 +224,7 @@ appimage-builder --recipe AppImageBuilder.yml
 
 **Snap**
 
-Feel free to open a pull request. There is a `snap` branch to play with.
+Instructions in [localsend/snap/README.md](https://github.com/localsend/snap/blob/main/README.md)
 
 ## Contributors
 
