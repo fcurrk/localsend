@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "org.localsend.localsend_app"
+    namespace "org.localsend.minijer.app"
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
