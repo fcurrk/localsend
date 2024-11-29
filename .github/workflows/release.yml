@@ -106,6 +106,12 @@ jobs:
         working-directory: app
         run: flutter pub get
 
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: ${{ env.RUST_VERSION }}
+
       - name: Compile linux
         working-directory: app
         run: flutter build linux
@@ -140,6 +146,12 @@ jobs:
 
       - name: Enable dart_distributor
         run: dart pub global activate flutter_distributor
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: ${{ env.RUST_VERSION }}
 
       - name: Update PATH
         run: echo 'export PATH="$PATH:$HOME/.pub-cache/bin"' >> ~/.bashrc
@@ -190,6 +202,12 @@ jobs:
       - name: Dependencies
         working-directory: app
         run: flutter pub get
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: ${{ env.RUST_VERSION }}
 
       - name: Compile linux
         working-directory: app
