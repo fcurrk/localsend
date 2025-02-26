@@ -1,122 +1,11 @@
 {
-  "locale": "English",
-  "appName": "LocalSend",
-  "general": {
-    "accept": "Accept",
-    "accepted": "Accepted",
-    "add": "Add",
-    "advanced": "Advanced",
-    "cancel": "Cancel",
-    "close": "Close",
-    "confirm": "Confirm",
-    "continueStr": "Continue",
-    "copy": "Copy",
-    "copiedToClipboard": "Copied to Clipboard",
-    "decline": "Decline",
-    "done": "Done",
-    "delete": "Delete",
-    "edit": "Edit",
-    "error": "Error",
-    "example": "Example",
-    "files": "Files",
-    "finished": "Finished",
-    "hide": "Hide",
-    "off": "Off",
-    "offline": "Offline",
-    "on": "On",
-    "online": "Online",
-    "open": "Open",
-    "queue": "Queue",
-    "quickSave": "Quick Save",
-    "quickSaveFromFavorites": "Quick Save for \"Favorites\"",
-    "renamed": "Renamed",
-    "reset": "Undo changes",
-    "restart": "Restart",
-    "settings": "Settings",
-    "skipped": "Skipped",
-    "start": "Start",
-    "stop": "Stop",
-    "save": "Save",
-    "unchanged": "Unchanged",
-    "unknown": "Unknown",
-    "noItemInClipboard": "No items in Clipboard."
-  },
-  "receiveTab": {
-    "title": "Receive",
-    "infoBox": {
-      "ip": "IP:",
-      "port": "Port:",
-      "alias": "Device name:"
-    },
-    "quickSave": {
-      "off": "@:general.off",
-      "favorites": "Favorites",
-      "on": "@:general.on"
-    }
-  },
-  "sendTab": {
-    "title": "Send",
-    "selection": {
-      "title": "Selection",
-      "files": "Files: {files}",
-      "size": "Size: {size}"
-    },
-    "picker": {
-      "file": "File",
-      "folder": "Folder",
-      "media": "Media",
-      "text": "Text",
-      "app": "App",
-      "clipboard": "Paste"
-    },
-    "shareIntentInfo": "You can also use the \"Share\" feature of your mobile device to select files more easily.",
-    "nearbyDevices": "Nearby devices",
-    "thisDevice": "This Device",
-    "scan": "Search devices",
-    "manualSending": "Manual sending",
-    "sendMode": "Send mode",
-    "sendModes": {
-      "single": "Single recipient",
-      "multiple": "Multiple recipients",
-      "link": "Share via link"
-    },
-    "sendModeHelp": "Explanation",
-    "help": "Please ensure that the desired target is also on the same Wi-Fi network.",
-    "placeItems": "Place items to share."
-  },
+  "@@info": [
+    "Here are translations that exist in <en> but not in <az>.",
+    "After editing this file, you can run 'dart run slang apply --locale=az' to quickly apply the newly added translations."
+  ],
   "settingsTab": {
-    "title": "Settings",
-    "general": {
-      "title": "General",
-      "brightness": "Theme",
-      "brightnessOptions": {
-        "system": "System",
-        "dark": "Dark",
-        "light": "Light"
-      },
-      "color": "Color",
-      "colorOptions": {
-        "system": "System",
-        "oled": "OLED"
-      },
-      "language": "Language",
-      "languageOptions": {
-        "system": "System"
-      },
-      "saveWindowPlacement": "Save window position after quit",
-      "saveWindowPlacementWindows": "Save window position after exit",
-      "minimizeToTray": "Minimize to the System Tray/Menu Bar when closing",
-      "launchAtStartup": "Autostart after login",
-      "launchMinimized": "Autostart: Start hidden",
-      "showInContextMenu": "Show LocalSend in context menu",
-      "animations": "Animations"
-    },
     "receive": {
-      "title": "Receive",
-      "quickSave": "@:general.quickSave",
-      "quickSaveFromFavorites": "@:general.quickSaveFromFavorites",
       "requirePin": "@:webSharePage.requirePin",
-      "autoFinish": "Auto Finish",
       "destination": "Save to folder",
       "downloads": "(Downloads)",
       "saveToGallery": "Save media to gallery",
@@ -134,6 +23,11 @@
       "deviceType": "Device type",
       "deviceModel": "Device model",
       "port": "Port",
+      "network": "Network",
+      "networkOptions": {
+        "all": "All",
+        "filtered": "Filtered"
+      },
       "discoveryTimeout": "Discovery Timeout",
       "useSystemName": "Use system name",
       "generateRandomAlias": "Generate random alias",
@@ -169,6 +63,13 @@
       "symptom": "Both devices cannot discover each other nor can they share files.",
       "solution": "Does the problem exist on both sides? If so, you need to make sure that both devices are on the same Wi-Fi network and share the same configuration (port, multicast address, encryption). The Wi-Fi network may not allow communication between participants due to Access Point (AP) Isolation. In this case, this option must be disabled on the router."
     }
+  },
+  "networkInterfacesPage": {
+    "title": "Network Interfaces",
+    "info": "By default, LocalSend uses all available network interfaces. You can exclude unwanted networks here. You need to restart the server to apply the changes.",
+    "preview": "Preview",
+    "whitelist": "Whitelist",
+    "blacklist": "Blacklist"
   },
   "receiveHistoryPage": {
     "title": "History",
@@ -267,79 +168,6 @@
   },
   "changelogPage": {
     "title": "Changelog"
-  },
-  "aliasGenerator(ignoreMissing, ignoreGpt)": {
-    "@info": "Different locales may have different words, it may not match 1:1",
-    "adjectives": [
-      "Adorable",
-      "Beautiful",
-      "Big",
-      "Bright",
-      "Clean",
-      "Clever",
-      "Cool",
-      "Cute",
-      "Cunning",
-      "Determined",
-      "Energetic",
-      "Efficient",
-      "Fantastic",
-      "Fast",
-      "Fine",
-      "Fresh",
-      "Good",
-      "Gorgeous",
-      "Great",
-      "Handsome",
-      "Hot",
-      "Kind",
-      "Lovely",
-      "Mystic",
-      "Neat",
-      "Nice",
-      "Patient",
-      "Pretty",
-      "Powerful",
-      "Rich",
-      "Secret",
-      "Smart",
-      "Solid",
-      "Special",
-      "Strategic",
-      "Strong",
-      "Tidy",
-      "Wise"
-    ],
-    "fruits": [
-      "Apple",
-      "Avocado",
-      "Banana",
-      "Blackberry",
-      "Blueberry",
-      "Broccoli",
-      "Carrot",
-      "Cherry",
-      "Coconut",
-      "Grape",
-      "Lemon",
-      "Lettuce",
-      "Mango",
-      "Melon",
-      "Mushroom",
-      "Onion",
-      "Orange",
-      "Papaya",
-      "Peach",
-      "Pear",
-      "Pineapple",
-      "Potato",
-      "Pumpkin",
-      "Raspberry",
-      "Strawberry",
-      "Tomato"
-    ],
-    "combination": "{adjective} {fruit}",
-    "@combination": "In some languages, the adjective must be last."
   },
   "dialogs": {
     "addFile": {
@@ -466,7 +294,6 @@
     "invalid": "Filename contains invalid characters"
   },
   "tray": {
-    "@info": "Apple Guidelines are very strict about the \"close\" wording.",
     "open": "@:general.open",
     "close": "Quit LocalSend",
     "closeWindows": "Exit"
@@ -482,7 +309,6 @@
     "size": "Size"
   },
   "assetPicker": {
-    "@info": "Translations for the Media selection tool for Android and iPhone",
     "confirm": "Confirm",
     "cancel": "Cancel",
     "edit": "Edit",
