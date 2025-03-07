@@ -91,8 +91,8 @@
       "brightness": "主题",
       "brightnessOptions": {
         "system": "跟随系统",
-        "dark": "深色",
-        "light": "浅色"
+        "dark": "黑暗",
+        "light": "明亮"
       },
       "color": "颜色",
       "colorOptions": {
