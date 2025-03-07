@@ -1543,9 +1543,9 @@ class _TranslationsSettingsTabGeneralBrightnessOptionsZhCn extends TranslationsS
   @override
   String get system => '跟随系统';
   @override
-  String get dark => '暗色';
+  String get dark => '黑暗';
   @override
-  String get light => '亮色';
+  String get light => '明亮';
 }
 
 // Path: settingsTab.general.colorOptions
