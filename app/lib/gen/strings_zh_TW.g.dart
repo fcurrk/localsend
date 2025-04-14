@@ -1471,9 +1471,9 @@ class _TranslationsSettingsTabGeneralBrightnessOptionsZhTw extends TranslationsS
   @override
   String get system => '系統';
   @override
-  String get dark => '黑暗';
+  String get dark => '深色';
   @override
-  String get light => '明亮';
+  String get light => '淺色';
 }
 
 // Path: settingsTab.general.colorOptions
