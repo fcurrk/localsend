@@ -139,7 +139,7 @@ jobs:
   # Flutter currently doesn't provide Linux ARM64 binaries.
   build_tar_arm_64:
     needs: build
-    runs-on: [ self-hosted, linux, arm64 ]
+    runs-on: ubuntu-22.04-arm
 
     steps:
       - uses: actions/checkout@v4
@@ -230,7 +230,7 @@ jobs:
   # Flutter currently doesn't provide Linux ARM64 binaries.
   build_deb_arm_64:
     needs: build
-    runs-on: [ self-hosted, linux, arm64 ]
+    runs-on: ubuntu-22.04-arm
 
     steps:
       - uses: actions/checkout@v4
