@@ -233,8 +233,11 @@ class TranslationsReceivePageEn {
   final Translations _root; // ignore: unused_field
 
   // Translations
-  String subTitle({required num n}) =>
-      (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'wants to send you a file', other: 'wants to send you ${n} files');
+  String subTitle({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+        n,
+        one: 'wants to send you a file',
+        other: 'wants to send you ${n} files',
+      );
   String get subTitleMessage => 'sent you a message:';
   String get subTitleLink => 'sent you a link:';
   String get canceled => 'The sender has canceled the request.';
