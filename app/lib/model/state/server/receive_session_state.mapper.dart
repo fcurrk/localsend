@@ -65,18 +65,19 @@ class ReceiveSessionStateMapper extends ClassMapperBase<ReceiveSessionState> {
 
   static ReceiveSessionState _instantiate(DecodingData data) {
     return ReceiveSessionState(
-        sessionId: data.dec(_f$sessionId),
-        status: data.dec(_f$status),
-        sender: data.dec(_f$sender),
-        senderAlias: data.dec(_f$senderAlias),
-        files: data.dec(_f$files),
-        startTime: data.dec(_f$startTime),
-        endTime: data.dec(_f$endTime),
-        destinationDirectory: data.dec(_f$destinationDirectory),
-        cacheDirectory: data.dec(_f$cacheDirectory),
-        saveToGallery: data.dec(_f$saveToGallery),
-        createdDirectories: data.dec(_f$createdDirectories),
-        responseHandler: data.dec(_f$responseHandler));
+      sessionId: data.dec(_f$sessionId),
+      status: data.dec(_f$status),
+      sender: data.dec(_f$sender),
+      senderAlias: data.dec(_f$senderAlias),
+      files: data.dec(_f$files),
+      startTime: data.dec(_f$startTime),
+      endTime: data.dec(_f$endTime),
+      destinationDirectory: data.dec(_f$destinationDirectory),
+      cacheDirectory: data.dec(_f$cacheDirectory),
+      saveToGallery: data.dec(_f$saveToGallery),
+      createdDirectories: data.dec(_f$createdDirectories),
+      responseHandler: data.dec(_f$responseHandler),
+    );
   }
 
   @override
@@ -126,19 +127,20 @@ extension ReceiveSessionStateValueCopy<$R, $Out> on ObjectCopyWith<$R, ReceiveSe
 abstract class ReceiveSessionStateCopyWith<$R, $In extends ReceiveSessionState, $Out> implements ClassCopyWith<$R, $In, $Out> {
   DeviceCopyWith<$R, Device, Device> get sender;
   MapCopyWith<$R, String, ReceivingFile, ReceivingFileCopyWith<$R, ReceivingFile, ReceivingFile>> get files;
-  $R call(
-      {String? sessionId,
-      SessionStatus? status,
-      Device? sender,
-      String? senderAlias,
-      Map<String, ReceivingFile>? files,
-      int? startTime,
-      int? endTime,
-      String? destinationDirectory,
-      String? cacheDirectory,
-      bool? saveToGallery,
-      Set<String>? createdDirectories,
-      StreamController<Map<String, String>?>? responseHandler});
+  $R call({
+    String? sessionId,
+    SessionStatus? status,
+    Device? sender,
+    String? senderAlias,
+    Map<String, ReceivingFile>? files,
+    int? startTime,
+    int? endTime,
+    String? destinationDirectory,
+    String? cacheDirectory,
+    bool? saveToGallery,
+    Set<String>? createdDirectories,
+    StreamController<Map<String, String>?>? responseHandler,
+  });
   ReceiveSessionStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -154,47 +156,50 @@ class _ReceiveSessionStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, R
   MapCopyWith<$R, String, ReceivingFile, ReceivingFileCopyWith<$R, ReceivingFile, ReceivingFile>> get files =>
       MapCopyWith($value.files, (v, t) => v.copyWith.$chain(t), (v) => call(files: v));
   @override
-  $R call(
-          {String? sessionId,
-          SessionStatus? status,
-          Device? sender,
-          String? senderAlias,
-          Map<String, ReceivingFile>? files,
-          Object? startTime = $none,
-          Object? endTime = $none,
-          String? destinationDirectory,
-          String? cacheDirectory,
-          bool? saveToGallery,
-          Set<String>? createdDirectories,
-          Object? responseHandler = $none}) =>
-      $apply(FieldCopyWithData({
-        if (sessionId != null) #sessionId: sessionId,
-        if (status != null) #status: status,
-        if (sender != null) #sender: sender,
-        if (senderAlias != null) #senderAlias: senderAlias,
-        if (files != null) #files: files,
-        if (startTime != $none) #startTime: startTime,
-        if (endTime != $none) #endTime: endTime,
-        if (destinationDirectory != null) #destinationDirectory: destinationDirectory,
-        if (cacheDirectory != null) #cacheDirectory: cacheDirectory,
-        if (saveToGallery != null) #saveToGallery: saveToGallery,
-        if (createdDirectories != null) #createdDirectories: createdDirectories,
-        if (responseHandler != $none) #responseHandler: responseHandler
-      }));
+  $R call({
+    String? sessionId,
+    SessionStatus? status,
+    Device? sender,
+    String? senderAlias,
+    Map<String, ReceivingFile>? files,
+    Object? startTime = $none,
+    Object? endTime = $none,
+    String? destinationDirectory,
+    String? cacheDirectory,
+    bool? saveToGallery,
+    Set<String>? createdDirectories,
+    Object? responseHandler = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (sessionId != null) #sessionId: sessionId,
+      if (status != null) #status: status,
+      if (sender != null) #sender: sender,
+      if (senderAlias != null) #senderAlias: senderAlias,
+      if (files != null) #files: files,
+      if (startTime != $none) #startTime: startTime,
+      if (endTime != $none) #endTime: endTime,
+      if (destinationDirectory != null) #destinationDirectory: destinationDirectory,
+      if (cacheDirectory != null) #cacheDirectory: cacheDirectory,
+      if (saveToGallery != null) #saveToGallery: saveToGallery,
+      if (createdDirectories != null) #createdDirectories: createdDirectories,
+      if (responseHandler != $none) #responseHandler: responseHandler,
+    }),
+  );
   @override
   ReceiveSessionState $make(CopyWithData data) => ReceiveSessionState(
-      sessionId: data.get(#sessionId, or: $value.sessionId),
-      status: data.get(#status, or: $value.status),
-      sender: data.get(#sender, or: $value.sender),
-      senderAlias: data.get(#senderAlias, or: $value.senderAlias),
-      files: data.get(#files, or: $value.files),
-      startTime: data.get(#startTime, or: $value.startTime),
-      endTime: data.get(#endTime, or: $value.endTime),
-      destinationDirectory: data.get(#destinationDirectory, or: $value.destinationDirectory),
-      cacheDirectory: data.get(#cacheDirectory, or: $value.cacheDirectory),
-      saveToGallery: data.get(#saveToGallery, or: $value.saveToGallery),
-      createdDirectories: data.get(#createdDirectories, or: $value.createdDirectories),
-      responseHandler: data.get(#responseHandler, or: $value.responseHandler));
+    sessionId: data.get(#sessionId, or: $value.sessionId),
+    status: data.get(#status, or: $value.status),
+    sender: data.get(#sender, or: $value.sender),
+    senderAlias: data.get(#senderAlias, or: $value.senderAlias),
+    files: data.get(#files, or: $value.files),
+    startTime: data.get(#startTime, or: $value.startTime),
+    endTime: data.get(#endTime, or: $value.endTime),
+    destinationDirectory: data.get(#destinationDirectory, or: $value.destinationDirectory),
+    cacheDirectory: data.get(#cacheDirectory, or: $value.cacheDirectory),
+    saveToGallery: data.get(#saveToGallery, or: $value.saveToGallery),
+    createdDirectories: data.get(#createdDirectories, or: $value.createdDirectories),
+    responseHandler: data.get(#responseHandler, or: $value.responseHandler),
+  );
 
   @override
   ReceiveSessionStateCopyWith<$R2, ReceiveSessionState, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>

@@ -9,6 +9,7 @@ import 'package:localsend_app/provider/network/server/server_provider.dart';
 import 'package:localsend_app/provider/settings_provider.dart';
 import 'package:localsend_app/util/native/platform_check.dart';
 import 'package:localsend_app/util/ui/snackbar.dart';
+import 'package:localsend_app/widget/custom_basic_appbar.dart';
 import 'package:localsend_app/widget/dialogs/pin_dialog.dart';
 import 'package:localsend_app/widget/dialogs/qr_dialog.dart';
 import 'package:localsend_app/widget/dialogs/zoom_dialog.dart';
@@ -50,7 +51,9 @@ class _WebSendPageState extends State<WebSendPage> with Refena {
     });
     await sleepAsync(500);
     try {
-      await ref.notifier(serverProvider).restartServer(
+      await ref
+          .notifier(serverProvider)
+          .restartServer(
             alias: settings.alias,
             port: settings.port,
             https: _encrypted,
@@ -99,9 +102,7 @@ class _WebSendPageState extends State<WebSendPage> with Refena {
       },
       canPop: false,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(t.webSharePage.title),
-        ),
+        appBar: basicLocalSendAppbar(t.webSharePage.title),
         body: Builder(
           builder: (context) {
             if (_stateEnum != _ServerState.running) {
@@ -242,8 +243,8 @@ class _WebSendPageState extends State<WebSendPage> with Refena {
                                   Text(
                                     session.deviceInfo,
                                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                          color: session.responseHandler != null ? Theme.of(context).colorScheme.warning : null,
-                                        ),
+                                      color: session.responseHandler != null ? Theme.of(context).colorScheme.warning : null,
+                                    ),
                                   ),
                                   const SizedBox(height: 5),
                                   Text(session.ip, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.grey)),
@@ -275,8 +276,8 @@ class _WebSendPageState extends State<WebSendPage> with Refena {
                                 child: Text(
                                   t.general.accepted,
                                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                        color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                      ),
+                                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                  ),
                                 ),
                               ),
                           ],

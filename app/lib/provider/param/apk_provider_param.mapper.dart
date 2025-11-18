@@ -39,10 +39,11 @@ class ApkProviderParamMapper extends ClassMapperBase<ApkProviderParam> {
 
   static ApkProviderParam _instantiate(DecodingData data) {
     return ApkProviderParam(
-        query: data.dec(_f$query),
-        includeSystemApps: data.dec(_f$includeSystemApps),
-        onlyAppsWithLaunchIntent: data.dec(_f$onlyAppsWithLaunchIntent),
-        selectMultipleApps: data.dec(_f$selectMultipleApps));
+      query: data.dec(_f$query),
+      includeSystemApps: data.dec(_f$includeSystemApps),
+      onlyAppsWithLaunchIntent: data.dec(_f$onlyAppsWithLaunchIntent),
+      selectMultipleApps: data.dec(_f$selectMultipleApps),
+    );
   }
 
   @override
@@ -100,18 +101,21 @@ class _ApkProviderParamCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, ApkP
   @override
   late final ClassMapperBase<ApkProviderParam> $mapper = ApkProviderParamMapper.ensureInitialized();
   @override
-  $R call({String? query, bool? includeSystemApps, bool? onlyAppsWithLaunchIntent, bool? selectMultipleApps}) => $apply(FieldCopyWithData({
-        if (query != null) #query: query,
-        if (includeSystemApps != null) #includeSystemApps: includeSystemApps,
-        if (onlyAppsWithLaunchIntent != null) #onlyAppsWithLaunchIntent: onlyAppsWithLaunchIntent,
-        if (selectMultipleApps != null) #selectMultipleApps: selectMultipleApps
-      }));
+  $R call({String? query, bool? includeSystemApps, bool? onlyAppsWithLaunchIntent, bool? selectMultipleApps}) => $apply(
+    FieldCopyWithData({
+      if (query != null) #query: query,
+      if (includeSystemApps != null) #includeSystemApps: includeSystemApps,
+      if (onlyAppsWithLaunchIntent != null) #onlyAppsWithLaunchIntent: onlyAppsWithLaunchIntent,
+      if (selectMultipleApps != null) #selectMultipleApps: selectMultipleApps,
+    }),
+  );
   @override
   ApkProviderParam $make(CopyWithData data) => ApkProviderParam(
-      query: data.get(#query, or: $value.query),
-      includeSystemApps: data.get(#includeSystemApps, or: $value.includeSystemApps),
-      onlyAppsWithLaunchIntent: data.get(#onlyAppsWithLaunchIntent, or: $value.onlyAppsWithLaunchIntent),
-      selectMultipleApps: data.get(#selectMultipleApps, or: $value.selectMultipleApps));
+    query: data.get(#query, or: $value.query),
+    includeSystemApps: data.get(#includeSystemApps, or: $value.includeSystemApps),
+    onlyAppsWithLaunchIntent: data.get(#onlyAppsWithLaunchIntent, or: $value.onlyAppsWithLaunchIntent),
+    selectMultipleApps: data.get(#selectMultipleApps, or: $value.selectMultipleApps),
+  );
 
   @override
   ApkProviderParamCopyWith<$R2, ApkProviderParam, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _ApkProviderParamCopyWithImpl($value, $cast, t);

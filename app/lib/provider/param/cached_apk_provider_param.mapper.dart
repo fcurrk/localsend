@@ -36,9 +36,10 @@ class CachedApkProviderParamMapper extends ClassMapperBase<CachedApkProviderPara
 
   static CachedApkProviderParam _instantiate(DecodingData data) {
     return CachedApkProviderParam(
-        includeSystemApps: data.dec(_f$includeSystemApps),
-        onlyAppsWithLaunchIntent: data.dec(_f$onlyAppsWithLaunchIntent),
-        selectMultipleApps: data.dec(_f$selectMultipleApps));
+      includeSystemApps: data.dec(_f$includeSystemApps),
+      onlyAppsWithLaunchIntent: data.dec(_f$onlyAppsWithLaunchIntent),
+      selectMultipleApps: data.dec(_f$selectMultipleApps),
+    );
   }
 
   @override
@@ -97,16 +98,19 @@ class _CachedApkProviderParamCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R
   @override
   late final ClassMapperBase<CachedApkProviderParam> $mapper = CachedApkProviderParamMapper.ensureInitialized();
   @override
-  $R call({bool? includeSystemApps, bool? onlyAppsWithLaunchIntent, bool? selectMultipleApps}) => $apply(FieldCopyWithData({
-        if (includeSystemApps != null) #includeSystemApps: includeSystemApps,
-        if (onlyAppsWithLaunchIntent != null) #onlyAppsWithLaunchIntent: onlyAppsWithLaunchIntent,
-        if (selectMultipleApps != null) #selectMultipleApps: selectMultipleApps
-      }));
+  $R call({bool? includeSystemApps, bool? onlyAppsWithLaunchIntent, bool? selectMultipleApps}) => $apply(
+    FieldCopyWithData({
+      if (includeSystemApps != null) #includeSystemApps: includeSystemApps,
+      if (onlyAppsWithLaunchIntent != null) #onlyAppsWithLaunchIntent: onlyAppsWithLaunchIntent,
+      if (selectMultipleApps != null) #selectMultipleApps: selectMultipleApps,
+    }),
+  );
   @override
   CachedApkProviderParam $make(CopyWithData data) => CachedApkProviderParam(
-      includeSystemApps: data.get(#includeSystemApps, or: $value.includeSystemApps),
-      onlyAppsWithLaunchIntent: data.get(#onlyAppsWithLaunchIntent, or: $value.onlyAppsWithLaunchIntent),
-      selectMultipleApps: data.get(#selectMultipleApps, or: $value.selectMultipleApps));
+    includeSystemApps: data.get(#includeSystemApps, or: $value.includeSystemApps),
+    onlyAppsWithLaunchIntent: data.get(#onlyAppsWithLaunchIntent, or: $value.onlyAppsWithLaunchIntent),
+    selectMultipleApps: data.get(#selectMultipleApps, or: $value.selectMultipleApps),
+  );
 
   @override
   CachedApkProviderParamCopyWith<$R2, CachedApkProviderParam, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>

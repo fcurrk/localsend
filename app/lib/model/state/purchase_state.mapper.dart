@@ -98,12 +98,14 @@ class _PurchaseStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Purchas
       MapCopyWith($value.prices, (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(prices: v));
   @override
   $R call({Map<PurchaseItem, String>? prices, Set<PurchaseItem>? purchases, bool? pending}) => $apply(
-      FieldCopyWithData({if (prices != null) #prices: prices, if (purchases != null) #purchases: purchases, if (pending != null) #pending: pending}));
+    FieldCopyWithData({if (prices != null) #prices: prices, if (purchases != null) #purchases: purchases, if (pending != null) #pending: pending}),
+  );
   @override
   PurchaseState $make(CopyWithData data) => PurchaseState(
-      prices: data.get(#prices, or: $value.prices),
-      purchases: data.get(#purchases, or: $value.purchases),
-      pending: data.get(#pending, or: $value.pending));
+    prices: data.get(#prices, or: $value.prices),
+    purchases: data.get(#purchases, or: $value.purchases),
+    pending: data.get(#pending, or: $value.pending),
+  );
 
   @override
   PurchaseStateCopyWith<$R2, PurchaseState, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _PurchaseStateCopyWithImpl($value, $cast, t);

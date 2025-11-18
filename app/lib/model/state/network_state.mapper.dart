@@ -96,8 +96,10 @@ class _NetworkStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, NetworkS
   $R call({List<String>? localIps, bool? initialized}) =>
       $apply(FieldCopyWithData({if (localIps != null) #localIps: localIps, if (initialized != null) #initialized: initialized}));
   @override
-  NetworkState $make(CopyWithData data) =>
-      NetworkState(localIps: data.get(#localIps, or: $value.localIps), initialized: data.get(#initialized, or: $value.initialized));
+  NetworkState $make(CopyWithData data) => NetworkState(
+    localIps: data.get(#localIps, or: $value.localIps),
+    initialized: data.get(#initialized, or: $value.initialized),
+  );
 
   @override
   NetworkStateCopyWith<$R2, NetworkState, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _NetworkStateCopyWithImpl($value, $cast, t);

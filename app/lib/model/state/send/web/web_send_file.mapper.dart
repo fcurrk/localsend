@@ -98,14 +98,21 @@ class _WebSendFileCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, WebSendFi
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get bytes =>
       $value.bytes != null ? ListCopyWith($value.bytes!, (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(bytes: v)) : null;
   @override
-  $R call({FileDto? file, Object? asset = $none, Object? path = $none, Object? bytes = $none}) => $apply(FieldCopyWithData(
-      {if (file != null) #file: file, if (asset != $none) #asset: asset, if (path != $none) #path: path, if (bytes != $none) #bytes: bytes}));
+  $R call({FileDto? file, Object? asset = $none, Object? path = $none, Object? bytes = $none}) => $apply(
+    FieldCopyWithData({
+      if (file != null) #file: file,
+      if (asset != $none) #asset: asset,
+      if (path != $none) #path: path,
+      if (bytes != $none) #bytes: bytes,
+    }),
+  );
   @override
   WebSendFile $make(CopyWithData data) => WebSendFile(
-      file: data.get(#file, or: $value.file),
-      asset: data.get(#asset, or: $value.asset),
-      path: data.get(#path, or: $value.path),
-      bytes: data.get(#bytes, or: $value.bytes));
+    file: data.get(#file, or: $value.file),
+    asset: data.get(#asset, or: $value.asset),
+    path: data.get(#path, or: $value.path),
+    bytes: data.get(#bytes, or: $value.bytes),
+  );
 
   @override
   WebSendFileCopyWith<$R2, WebSendFile, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _WebSendFileCopyWithImpl($value, $cast, t);

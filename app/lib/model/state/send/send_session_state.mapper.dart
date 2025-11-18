@@ -59,16 +59,17 @@ class SendSessionStateMapper extends ClassMapperBase<SendSessionState> {
 
   static SendSessionState _instantiate(DecodingData data) {
     return SendSessionState(
-        sessionId: data.dec(_f$sessionId),
-        remoteSessionId: data.dec(_f$remoteSessionId),
-        background: data.dec(_f$background),
-        status: data.dec(_f$status),
-        target: data.dec(_f$target),
-        files: data.dec(_f$files),
-        startTime: data.dec(_f$startTime),
-        endTime: data.dec(_f$endTime),
-        sendingTasks: data.dec(_f$sendingTasks),
-        errorMessage: data.dec(_f$errorMessage));
+      sessionId: data.dec(_f$sessionId),
+      remoteSessionId: data.dec(_f$remoteSessionId),
+      background: data.dec(_f$background),
+      status: data.dec(_f$status),
+      target: data.dec(_f$target),
+      files: data.dec(_f$files),
+      startTime: data.dec(_f$startTime),
+      endTime: data.dec(_f$endTime),
+      sendingTasks: data.dec(_f$sendingTasks),
+      errorMessage: data.dec(_f$errorMessage),
+    );
   }
 
   @override
@@ -118,17 +119,18 @@ abstract class SendSessionStateCopyWith<$R, $In extends SendSessionState, $Out> 
   DeviceCopyWith<$R, Device, Device> get target;
   MapCopyWith<$R, String, SendingFile, SendingFileCopyWith<$R, SendingFile, SendingFile>> get files;
   ListCopyWith<$R, SendingTask, ObjectCopyWith<$R, SendingTask, SendingTask>>? get sendingTasks;
-  $R call(
-      {String? sessionId,
-      String? remoteSessionId,
-      bool? background,
-      SessionStatus? status,
-      Device? target,
-      Map<String, SendingFile>? files,
-      int? startTime,
-      int? endTime,
-      List<SendingTask>? sendingTasks,
-      String? errorMessage});
+  $R call({
+    String? sessionId,
+    String? remoteSessionId,
+    bool? background,
+    SessionStatus? status,
+    Device? target,
+    Map<String, SendingFile>? files,
+    int? startTime,
+    int? endTime,
+    List<SendingTask>? sendingTasks,
+    String? errorMessage,
+  });
   SendSessionStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -148,41 +150,44 @@ class _SendSessionStateCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Send
       ? ListCopyWith($value.sendingTasks!, (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(sendingTasks: v))
       : null;
   @override
-  $R call(
-          {String? sessionId,
-          Object? remoteSessionId = $none,
-          bool? background,
-          SessionStatus? status,
-          Device? target,
-          Map<String, SendingFile>? files,
-          Object? startTime = $none,
-          Object? endTime = $none,
-          Object? sendingTasks = $none,
-          Object? errorMessage = $none}) =>
-      $apply(FieldCopyWithData({
-        if (sessionId != null) #sessionId: sessionId,
-        if (remoteSessionId != $none) #remoteSessionId: remoteSessionId,
-        if (background != null) #background: background,
-        if (status != null) #status: status,
-        if (target != null) #target: target,
-        if (files != null) #files: files,
-        if (startTime != $none) #startTime: startTime,
-        if (endTime != $none) #endTime: endTime,
-        if (sendingTasks != $none) #sendingTasks: sendingTasks,
-        if (errorMessage != $none) #errorMessage: errorMessage
-      }));
+  $R call({
+    String? sessionId,
+    Object? remoteSessionId = $none,
+    bool? background,
+    SessionStatus? status,
+    Device? target,
+    Map<String, SendingFile>? files,
+    Object? startTime = $none,
+    Object? endTime = $none,
+    Object? sendingTasks = $none,
+    Object? errorMessage = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (sessionId != null) #sessionId: sessionId,
+      if (remoteSessionId != $none) #remoteSessionId: remoteSessionId,
+      if (background != null) #background: background,
+      if (status != null) #status: status,
+      if (target != null) #target: target,
+      if (files != null) #files: files,
+      if (startTime != $none) #startTime: startTime,
+      if (endTime != $none) #endTime: endTime,
+      if (sendingTasks != $none) #sendingTasks: sendingTasks,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+    }),
+  );
   @override
   SendSessionState $make(CopyWithData data) => SendSessionState(
-      sessionId: data.get(#sessionId, or: $value.sessionId),
-      remoteSessionId: data.get(#remoteSessionId, or: $value.remoteSessionId),
-      background: data.get(#background, or: $value.background),
-      status: data.get(#status, or: $value.status),
-      target: data.get(#target, or: $value.target),
-      files: data.get(#files, or: $value.files),
-      startTime: data.get(#startTime, or: $value.startTime),
-      endTime: data.get(#endTime, or: $value.endTime),
-      sendingTasks: data.get(#sendingTasks, or: $value.sendingTasks),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage));
+    sessionId: data.get(#sessionId, or: $value.sessionId),
+    remoteSessionId: data.get(#remoteSessionId, or: $value.remoteSessionId),
+    background: data.get(#background, or: $value.background),
+    status: data.get(#status, or: $value.status),
+    target: data.get(#target, or: $value.target),
+    files: data.get(#files, or: $value.files),
+    startTime: data.get(#startTime, or: $value.startTime),
+    endTime: data.get(#endTime, or: $value.endTime),
+    sendingTasks: data.get(#sendingTasks, or: $value.sendingTasks),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+  );
 
   @override
   SendSessionStateCopyWith<$R2, SendSessionState, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _SendSessionStateCopyWithImpl($value, $cast, t);

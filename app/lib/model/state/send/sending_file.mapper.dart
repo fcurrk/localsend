@@ -51,14 +51,15 @@ class SendingFileMapper extends ClassMapperBase<SendingFile> {
 
   static SendingFile _instantiate(DecodingData data) {
     return SendingFile(
-        file: data.dec(_f$file),
-        status: data.dec(_f$status),
-        token: data.dec(_f$token),
-        thumbnail: data.dec(_f$thumbnail),
-        asset: data.dec(_f$asset),
-        path: data.dec(_f$path),
-        bytes: data.dec(_f$bytes),
-        errorMessage: data.dec(_f$errorMessage));
+      file: data.dec(_f$file),
+      status: data.dec(_f$status),
+      token: data.dec(_f$token),
+      thumbnail: data.dec(_f$thumbnail),
+      asset: data.dec(_f$asset),
+      path: data.dec(_f$path),
+      bytes: data.dec(_f$bytes),
+      errorMessage: data.dec(_f$errorMessage),
+    );
   }
 
   @override
@@ -105,15 +106,16 @@ extension SendingFileValueCopy<$R, $Out> on ObjectCopyWith<$R, SendingFile, $Out
 
 abstract class SendingFileCopyWith<$R, $In extends SendingFile, $Out> implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get bytes;
-  $R call(
-      {FileDto? file,
-      FileStatus? status,
-      String? token,
-      Uint8List? thumbnail,
-      AssetEntity? asset,
-      String? path,
-      List<int>? bytes,
-      String? errorMessage});
+  $R call({
+    FileDto? file,
+    FileStatus? status,
+    String? token,
+    Uint8List? thumbnail,
+    AssetEntity? asset,
+    String? path,
+    List<int>? bytes,
+    String? errorMessage,
+  });
   SendingFileCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -126,35 +128,38 @@ class _SendingFileCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, SendingFi
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get bytes =>
       $value.bytes != null ? ListCopyWith($value.bytes!, (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(bytes: v)) : null;
   @override
-  $R call(
-          {FileDto? file,
-          FileStatus? status,
-          Object? token = $none,
-          Object? thumbnail = $none,
-          Object? asset = $none,
-          Object? path = $none,
-          Object? bytes = $none,
-          Object? errorMessage = $none}) =>
-      $apply(FieldCopyWithData({
-        if (file != null) #file: file,
-        if (status != null) #status: status,
-        if (token != $none) #token: token,
-        if (thumbnail != $none) #thumbnail: thumbnail,
-        if (asset != $none) #asset: asset,
-        if (path != $none) #path: path,
-        if (bytes != $none) #bytes: bytes,
-        if (errorMessage != $none) #errorMessage: errorMessage
-      }));
+  $R call({
+    FileDto? file,
+    FileStatus? status,
+    Object? token = $none,
+    Object? thumbnail = $none,
+    Object? asset = $none,
+    Object? path = $none,
+    Object? bytes = $none,
+    Object? errorMessage = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (file != null) #file: file,
+      if (status != null) #status: status,
+      if (token != $none) #token: token,
+      if (thumbnail != $none) #thumbnail: thumbnail,
+      if (asset != $none) #asset: asset,
+      if (path != $none) #path: path,
+      if (bytes != $none) #bytes: bytes,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+    }),
+  );
   @override
   SendingFile $make(CopyWithData data) => SendingFile(
-      file: data.get(#file, or: $value.file),
-      status: data.get(#status, or: $value.status),
-      token: data.get(#token, or: $value.token),
-      thumbnail: data.get(#thumbnail, or: $value.thumbnail),
-      asset: data.get(#asset, or: $value.asset),
-      path: data.get(#path, or: $value.path),
-      bytes: data.get(#bytes, or: $value.bytes),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage));
+    file: data.get(#file, or: $value.file),
+    status: data.get(#status, or: $value.status),
+    token: data.get(#token, or: $value.token),
+    thumbnail: data.get(#thumbnail, or: $value.thumbnail),
+    asset: data.get(#asset, or: $value.asset),
+    path: data.get(#path, or: $value.path),
+    bytes: data.get(#bytes, or: $value.bytes),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+  );
 
   @override
   SendingFileCopyWith<$R2, SendingFile, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _SendingFileCopyWithImpl($value, $cast, t);

@@ -48,13 +48,14 @@ class ReceivingFileMapper extends ClassMapperBase<ReceivingFile> {
 
   static ReceivingFile _instantiate(DecodingData data) {
     return ReceivingFile(
-        file: data.dec(_f$file),
-        status: data.dec(_f$status),
-        token: data.dec(_f$token),
-        desiredName: data.dec(_f$desiredName),
-        path: data.dec(_f$path),
-        savedToGallery: data.dec(_f$savedToGallery),
-        errorMessage: data.dec(_f$errorMessage));
+      file: data.dec(_f$file),
+      status: data.dec(_f$status),
+      token: data.dec(_f$token),
+      desiredName: data.dec(_f$desiredName),
+      path: data.dec(_f$path),
+      savedToGallery: data.dec(_f$savedToGallery),
+      errorMessage: data.dec(_f$errorMessage),
+    );
   }
 
   @override
@@ -112,32 +113,35 @@ class _ReceivingFileCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Receivi
   @override
   late final ClassMapperBase<ReceivingFile> $mapper = ReceivingFileMapper.ensureInitialized();
   @override
-  $R call(
-          {FileDto? file,
-          FileStatus? status,
-          Object? token = $none,
-          Object? desiredName = $none,
-          Object? path = $none,
-          bool? savedToGallery,
-          Object? errorMessage = $none}) =>
-      $apply(FieldCopyWithData({
-        if (file != null) #file: file,
-        if (status != null) #status: status,
-        if (token != $none) #token: token,
-        if (desiredName != $none) #desiredName: desiredName,
-        if (path != $none) #path: path,
-        if (savedToGallery != null) #savedToGallery: savedToGallery,
-        if (errorMessage != $none) #errorMessage: errorMessage
-      }));
+  $R call({
+    FileDto? file,
+    FileStatus? status,
+    Object? token = $none,
+    Object? desiredName = $none,
+    Object? path = $none,
+    bool? savedToGallery,
+    Object? errorMessage = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (file != null) #file: file,
+      if (status != null) #status: status,
+      if (token != $none) #token: token,
+      if (desiredName != $none) #desiredName: desiredName,
+      if (path != $none) #path: path,
+      if (savedToGallery != null) #savedToGallery: savedToGallery,
+      if (errorMessage != $none) #errorMessage: errorMessage,
+    }),
+  );
   @override
   ReceivingFile $make(CopyWithData data) => ReceivingFile(
-      file: data.get(#file, or: $value.file),
-      status: data.get(#status, or: $value.status),
-      token: data.get(#token, or: $value.token),
-      desiredName: data.get(#desiredName, or: $value.desiredName),
-      path: data.get(#path, or: $value.path),
-      savedToGallery: data.get(#savedToGallery, or: $value.savedToGallery),
-      errorMessage: data.get(#errorMessage, or: $value.errorMessage));
+    file: data.get(#file, or: $value.file),
+    status: data.get(#status, or: $value.status),
+    token: data.get(#token, or: $value.token),
+    desiredName: data.get(#desiredName, or: $value.desiredName),
+    path: data.get(#path, or: $value.path),
+    savedToGallery: data.get(#savedToGallery, or: $value.savedToGallery),
+    errorMessage: data.get(#errorMessage, or: $value.errorMessage),
+  );
 
   @override
   ReceivingFileCopyWith<$R2, ReceivingFile, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _ReceivingFileCopyWithImpl($value, $cast, t);

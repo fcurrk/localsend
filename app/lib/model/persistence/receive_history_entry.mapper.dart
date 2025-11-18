@@ -55,15 +55,16 @@ class ReceiveHistoryEntryMapper extends ClassMapperBase<ReceiveHistoryEntry> {
 
   static ReceiveHistoryEntry _instantiate(DecodingData data) {
     return ReceiveHistoryEntry(
-        id: data.dec(_f$id),
-        fileName: data.dec(_f$fileName),
-        fileType: data.dec(_f$fileType),
-        path: data.dec(_f$path),
-        savedToGallery: data.dec(_f$savedToGallery),
-        isMessage: data.dec(_f$isMessage),
-        fileSize: data.dec(_f$fileSize),
-        senderAlias: data.dec(_f$senderAlias),
-        timestamp: data.dec(_f$timestamp));
+      id: data.dec(_f$id),
+      fileName: data.dec(_f$fileName),
+      fileType: data.dec(_f$fileType),
+      path: data.dec(_f$path),
+      savedToGallery: data.dec(_f$savedToGallery),
+      isMessage: data.dec(_f$isMessage),
+      fileSize: data.dec(_f$fileSize),
+      senderAlias: data.dec(_f$senderAlias),
+      timestamp: data.dec(_f$timestamp),
+    );
   }
 
   @override
@@ -111,16 +112,17 @@ extension ReceiveHistoryEntryValueCopy<$R, $Out> on ObjectCopyWith<$R, ReceiveHi
 }
 
 abstract class ReceiveHistoryEntryCopyWith<$R, $In extends ReceiveHistoryEntry, $Out> implements ClassCopyWith<$R, $In, $Out> {
-  $R call(
-      {String? id,
-      String? fileName,
-      FileType? fileType,
-      String? path,
-      bool? savedToGallery,
-      bool? isMessage,
-      int? fileSize,
-      String? senderAlias,
-      DateTime? timestamp});
+  $R call({
+    String? id,
+    String? fileName,
+    FileType? fileType,
+    String? path,
+    bool? savedToGallery,
+    bool? isMessage,
+    int? fileSize,
+    String? senderAlias,
+    DateTime? timestamp,
+  });
   ReceiveHistoryEntryCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -131,38 +133,41 @@ class _ReceiveHistoryEntryCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, R
   @override
   late final ClassMapperBase<ReceiveHistoryEntry> $mapper = ReceiveHistoryEntryMapper.ensureInitialized();
   @override
-  $R call(
-          {String? id,
-          String? fileName,
-          FileType? fileType,
-          Object? path = $none,
-          bool? savedToGallery,
-          bool? isMessage,
-          int? fileSize,
-          String? senderAlias,
-          DateTime? timestamp}) =>
-      $apply(FieldCopyWithData({
-        if (id != null) #id: id,
-        if (fileName != null) #fileName: fileName,
-        if (fileType != null) #fileType: fileType,
-        if (path != $none) #path: path,
-        if (savedToGallery != null) #savedToGallery: savedToGallery,
-        if (isMessage != null) #isMessage: isMessage,
-        if (fileSize != null) #fileSize: fileSize,
-        if (senderAlias != null) #senderAlias: senderAlias,
-        if (timestamp != null) #timestamp: timestamp
-      }));
+  $R call({
+    String? id,
+    String? fileName,
+    FileType? fileType,
+    Object? path = $none,
+    bool? savedToGallery,
+    bool? isMessage,
+    int? fileSize,
+    String? senderAlias,
+    DateTime? timestamp,
+  }) => $apply(
+    FieldCopyWithData({
+      if (id != null) #id: id,
+      if (fileName != null) #fileName: fileName,
+      if (fileType != null) #fileType: fileType,
+      if (path != $none) #path: path,
+      if (savedToGallery != null) #savedToGallery: savedToGallery,
+      if (isMessage != null) #isMessage: isMessage,
+      if (fileSize != null) #fileSize: fileSize,
+      if (senderAlias != null) #senderAlias: senderAlias,
+      if (timestamp != null) #timestamp: timestamp,
+    }),
+  );
   @override
   ReceiveHistoryEntry $make(CopyWithData data) => ReceiveHistoryEntry(
-      id: data.get(#id, or: $value.id),
-      fileName: data.get(#fileName, or: $value.fileName),
-      fileType: data.get(#fileType, or: $value.fileType),
-      path: data.get(#path, or: $value.path),
-      savedToGallery: data.get(#savedToGallery, or: $value.savedToGallery),
-      isMessage: data.get(#isMessage, or: $value.isMessage),
-      fileSize: data.get(#fileSize, or: $value.fileSize),
-      senderAlias: data.get(#senderAlias, or: $value.senderAlias),
-      timestamp: data.get(#timestamp, or: $value.timestamp));
+    id: data.get(#id, or: $value.id),
+    fileName: data.get(#fileName, or: $value.fileName),
+    fileType: data.get(#fileType, or: $value.fileType),
+    path: data.get(#path, or: $value.path),
+    savedToGallery: data.get(#savedToGallery, or: $value.savedToGallery),
+    isMessage: data.get(#isMessage, or: $value.isMessage),
+    fileSize: data.get(#fileSize, or: $value.fileSize),
+    senderAlias: data.get(#senderAlias, or: $value.senderAlias),
+    timestamp: data.get(#timestamp, or: $value.timestamp),
+  );
 
   @override
   ReceiveHistoryEntryCopyWith<$R2, ReceiveHistoryEntry, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>

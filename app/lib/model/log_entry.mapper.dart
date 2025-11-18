@@ -91,7 +91,10 @@ class _LogEntryCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, LogEntry, $O
   $R call({DateTime? timestamp, String? log}) =>
       $apply(FieldCopyWithData({if (timestamp != null) #timestamp: timestamp, if (log != null) #log: log}));
   @override
-  LogEntry $make(CopyWithData data) => LogEntry(timestamp: data.get(#timestamp, or: $value.timestamp), log: data.get(#log, or: $value.log));
+  LogEntry $make(CopyWithData data) => LogEntry(
+    timestamp: data.get(#timestamp, or: $value.timestamp),
+    log: data.get(#log, or: $value.log),
+  );
 
   @override
   LogEntryCopyWith<$R2, LogEntry, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _LogEntryCopyWithImpl($value, $cast, t);

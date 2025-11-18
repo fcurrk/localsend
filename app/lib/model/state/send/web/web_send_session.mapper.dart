@@ -39,7 +39,11 @@ class WebSendSessionMapper extends ClassMapperBase<WebSendSession> {
 
   static WebSendSession _instantiate(DecodingData data) {
     return WebSendSession(
-        sessionId: data.dec(_f$sessionId), responseHandler: data.dec(_f$responseHandler), ip: data.dec(_f$ip), deviceInfo: data.dec(_f$deviceInfo));
+      sessionId: data.dec(_f$sessionId),
+      responseHandler: data.dec(_f$responseHandler),
+      ip: data.dec(_f$ip),
+      deviceInfo: data.dec(_f$deviceInfo),
+    );
   }
 
   @override
@@ -97,18 +101,21 @@ class _WebSendSessionCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, WebSen
   @override
   late final ClassMapperBase<WebSendSession> $mapper = WebSendSessionMapper.ensureInitialized();
   @override
-  $R call({String? sessionId, Object? responseHandler = $none, String? ip, String? deviceInfo}) => $apply(FieldCopyWithData({
-        if (sessionId != null) #sessionId: sessionId,
-        if (responseHandler != $none) #responseHandler: responseHandler,
-        if (ip != null) #ip: ip,
-        if (deviceInfo != null) #deviceInfo: deviceInfo
-      }));
+  $R call({String? sessionId, Object? responseHandler = $none, String? ip, String? deviceInfo}) => $apply(
+    FieldCopyWithData({
+      if (sessionId != null) #sessionId: sessionId,
+      if (responseHandler != $none) #responseHandler: responseHandler,
+      if (ip != null) #ip: ip,
+      if (deviceInfo != null) #deviceInfo: deviceInfo,
+    }),
+  );
   @override
   WebSendSession $make(CopyWithData data) => WebSendSession(
-      sessionId: data.get(#sessionId, or: $value.sessionId),
-      responseHandler: data.get(#responseHandler, or: $value.responseHandler),
-      ip: data.get(#ip, or: $value.ip),
-      deviceInfo: data.get(#deviceInfo, or: $value.deviceInfo));
+    sessionId: data.get(#sessionId, or: $value.sessionId),
+    responseHandler: data.get(#responseHandler, or: $value.responseHandler),
+    ip: data.get(#ip, or: $value.ip),
+    deviceInfo: data.get(#deviceInfo, or: $value.deviceInfo),
+  );
 
   @override
   WebSendSessionCopyWith<$R2, WebSendSession, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _WebSendSessionCopyWithImpl($value, $cast, t);

@@ -45,12 +45,13 @@ class FavoriteDeviceMapper extends ClassMapperBase<FavoriteDevice> {
 
   static FavoriteDevice _instantiate(DecodingData data) {
     return FavoriteDevice(
-        id: data.dec(_f$id),
-        fingerprint: data.dec(_f$fingerprint),
-        ip: data.dec(_f$ip),
-        port: data.dec(_f$port),
-        alias: data.dec(_f$alias),
-        customAlias: data.dec(_f$customAlias));
+      id: data.dec(_f$id),
+      fingerprint: data.dec(_f$fingerprint),
+      ip: data.dec(_f$ip),
+      port: data.dec(_f$port),
+      alias: data.dec(_f$alias),
+      customAlias: data.dec(_f$customAlias),
+    );
   }
 
   @override
@@ -108,22 +109,25 @@ class _FavoriteDeviceCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Favori
   @override
   late final ClassMapperBase<FavoriteDevice> $mapper = FavoriteDeviceMapper.ensureInitialized();
   @override
-  $R call({String? id, String? fingerprint, String? ip, int? port, String? alias, bool? customAlias}) => $apply(FieldCopyWithData({
-        if (id != null) #id: id,
-        if (fingerprint != null) #fingerprint: fingerprint,
-        if (ip != null) #ip: ip,
-        if (port != null) #port: port,
-        if (alias != null) #alias: alias,
-        if (customAlias != null) #customAlias: customAlias
-      }));
+  $R call({String? id, String? fingerprint, String? ip, int? port, String? alias, bool? customAlias}) => $apply(
+    FieldCopyWithData({
+      if (id != null) #id: id,
+      if (fingerprint != null) #fingerprint: fingerprint,
+      if (ip != null) #ip: ip,
+      if (port != null) #port: port,
+      if (alias != null) #alias: alias,
+      if (customAlias != null) #customAlias: customAlias,
+    }),
+  );
   @override
   FavoriteDevice $make(CopyWithData data) => FavoriteDevice(
-      id: data.get(#id, or: $value.id),
-      fingerprint: data.get(#fingerprint, or: $value.fingerprint),
-      ip: data.get(#ip, or: $value.ip),
-      port: data.get(#port, or: $value.port),
-      alias: data.get(#alias, or: $value.alias),
-      customAlias: data.get(#customAlias, or: $value.customAlias));
+    id: data.get(#id, or: $value.id),
+    fingerprint: data.get(#fingerprint, or: $value.fingerprint),
+    ip: data.get(#ip, or: $value.ip),
+    port: data.get(#port, or: $value.port),
+    alias: data.get(#alias, or: $value.alias),
+    customAlias: data.get(#customAlias, or: $value.customAlias),
+  );
 
   @override
   FavoriteDeviceCopyWith<$R2, FavoriteDevice, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _FavoriteDeviceCopyWithImpl($value, $cast, t);

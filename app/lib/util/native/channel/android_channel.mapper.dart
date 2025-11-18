@@ -99,8 +99,10 @@ class _PickDirectoryResultCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, P
   $R call({String? directoryUri, List<FileInfo>? files}) =>
       $apply(FieldCopyWithData({if (directoryUri != null) #directoryUri: directoryUri, if (files != null) #files: files}));
   @override
-  PickDirectoryResult $make(CopyWithData data) =>
-      PickDirectoryResult(directoryUri: data.get(#directoryUri, or: $value.directoryUri), files: data.get(#files, or: $value.files));
+  PickDirectoryResult $make(CopyWithData data) => PickDirectoryResult(
+    directoryUri: data.get(#directoryUri, or: $value.directoryUri),
+    files: data.get(#files, or: $value.files),
+  );
 
   @override
   PickDirectoryResultCopyWith<$R2, PickDirectoryResult, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
@@ -195,18 +197,21 @@ class _FileInfoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, FileInfo, $O
   @override
   late final ClassMapperBase<FileInfo> $mapper = FileInfoMapper.ensureInitialized();
   @override
-  $R call({String? name, int? size, String? uri, int? lastModified}) => $apply(FieldCopyWithData({
-        if (name != null) #name: name,
-        if (size != null) #size: size,
-        if (uri != null) #uri: uri,
-        if (lastModified != null) #lastModified: lastModified
-      }));
+  $R call({String? name, int? size, String? uri, int? lastModified}) => $apply(
+    FieldCopyWithData({
+      if (name != null) #name: name,
+      if (size != null) #size: size,
+      if (uri != null) #uri: uri,
+      if (lastModified != null) #lastModified: lastModified,
+    }),
+  );
   @override
   FileInfo $make(CopyWithData data) => FileInfo(
-      name: data.get(#name, or: $value.name),
-      size: data.get(#size, or: $value.size),
-      uri: data.get(#uri, or: $value.uri),
-      lastModified: data.get(#lastModified, or: $value.lastModified));
+    name: data.get(#name, or: $value.name),
+    size: data.get(#size, or: $value.size),
+    uri: data.get(#uri, or: $value.uri),
+    lastModified: data.get(#lastModified, or: $value.lastModified),
+  );
 
   @override
   FileInfoCopyWith<$R2, FileInfo, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _FileInfoCopyWithImpl($value, $cast, t);

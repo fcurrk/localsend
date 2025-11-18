@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:common/api_route_builder.dart';
 import 'package:common/constants.dart';
 import 'package:common/isolate.dart';
@@ -21,6 +22,7 @@ import 'package:localsend_app/provider/app_arguments_provider.dart';
 import 'package:localsend_app/provider/device_info_provider.dart';
 import 'package:localsend_app/provider/network/nearby_devices_provider.dart';
 import 'package:localsend_app/provider/network/server/server_provider.dart';
+import 'package:localsend_app/provider/network/webrtc/signaling_provider.dart';
 import 'package:localsend_app/provider/persistence_provider.dart';
 
 // [FOSS_REMOVE_START]
@@ -31,6 +33,8 @@ import 'package:localsend_app/provider/selection/selected_sending_files_provider
 import 'package:localsend_app/provider/settings_provider.dart';
 import 'package:localsend_app/provider/tv_provider.dart';
 import 'package:localsend_app/provider/window_dimensions_provider.dart';
+import 'package:localsend_app/rust/api/logging.dart' as rust_logging;
+import 'package:localsend_app/rust/frb_generated.dart';
 import 'package:localsend_app/util/i18n.dart';
 import 'package:localsend_app/util/native/autostart_helper.dart';
 import 'package:localsend_app/util/native/cache_helper.dart';
@@ -58,6 +62,16 @@ Future<RefenaContainer> preInit(List<String> args) async {
 
   initLogger(args.contains('-v') || args.contains('--verbose') ? Level.ALL : Level.INFO);
   MapperContainer.globals.use(const FileDtoMapper());
+
+  await RustLib.init();
+
+  if (kDebugMode) {
+    try {
+      await rust_logging.enableDebugLogging();
+    } catch (e) {
+      _logger.warning('Enabling debug logging failed', e);
+    }
+  }
 
   await Rhttp.init();
 
@@ -115,11 +129,13 @@ Future<RefenaContainer> preInit(List<String> args) async {
       startHidden = await isLaunchedAsLoginItem() && await getLaunchAtLoginMinimized();
     }
 
-    if (startHidden) {
-      unawaited(hideToTray());
-    } else {
-      unawaited(showFromTray());
-    }
+    doWhenWindowReady(() {
+      if (startHidden) {
+        unawaited(hideToTray());
+      } else {
+        unawaited(showFromTray());
+      }
+    });
 
     if (defaultTargetPlatform == TargetPlatform.macOS) {
       await setupStatusBar();
@@ -142,35 +158,41 @@ Future<RefenaContainer> preInit(List<String> args) async {
   );
 
   // initialize multi-threading
-  container.set(parentIsolateProvider.overrideWithNotifier((ref) {
-    final settings = ref.read(settingsProvider);
-    return IsolateController(
-      initialState: ParentIsolateState.initial(
-        SyncState(
-          init: () async {
-            await Rhttp.init();
-          },
-          rootIsolateToken: RootIsolateToken.instance!,
-          httpClientFactory: RhttpWrapper.create,
-          securityContext: persistenceService.getSecurityContext(),
-          deviceInfo: ref.read(deviceInfoProvider),
-          alias: settings.alias,
-          port: settings.port,
-          networkWhitelist: settings.networkWhitelist,
-          networkBlacklist: settings.networkBlacklist,
-          protocol: settings.https ? ProtocolType.https : ProtocolType.http,
-          multicastGroup: settings.multicastGroup,
-          discoveryTimeout: settings.discoveryTimeout,
-          serverRunning: true,
-          download: false,
+  container.set(
+    parentIsolateProvider.overrideWithNotifier((ref) {
+      final settings = ref.read(settingsProvider);
+      return IsolateController(
+        initialState: ParentIsolateState.initial(
+          SyncState(
+            init: () async {
+              await Rhttp.init();
+            },
+            rootIsolateToken: RootIsolateToken.instance!,
+            httpClientFactory: RhttpWrapper.create,
+            securityContext: persistenceService.getSecurityContext(),
+            deviceInfo: ref.read(deviceInfoProvider),
+            alias: settings.alias,
+            port: settings.port,
+            networkWhitelist: settings.networkWhitelist,
+            networkBlacklist: settings.networkBlacklist,
+            protocol: settings.https ? ProtocolType.https : ProtocolType.http,
+            multicastGroup: settings.multicastGroup,
+            discoveryTimeout: settings.discoveryTimeout,
+            serverRunning: true,
+            download: false,
+          ),
         ),
-      ),
-    );
-  }));
+      );
+    }),
+  );
 
-  await container.redux(parentIsolateProvider).dispatchAsync(IsolateSetupAction(
-        uriContentStreamResolver: AndroidUriContentStreamResolver(),
-      ));
+  await container
+      .redux(parentIsolateProvider)
+      .dispatchAsync(
+        IsolateSetupAction(
+          uriContentStreamResolver: AndroidUriContentStreamResolver(),
+        ),
+      );
 
   return container;
 }
@@ -203,13 +225,17 @@ Future<void> postInit(BuildContext context, Ref ref, bool appStart) async {
     _logger.warning('Starting multicast listener failed', e);
   }
 
+  ref.redux(signalingProvider).dispatch(SetupSignalingConnection());
+
   if (appStart) {
     if (defaultTargetPlatform == TargetPlatform.macOS) {
       // handle dropped files
-      pendingFilesStream.listen((files) {
-        ref.global.dispatchAsync(_HandleAppStartArgumentsAction(
-          args: files,
-        ));
+      pendingFilesStream.listen((files) async {
+        await ref.global.dispatchAsync(
+          _HandleAppStartArgumentsAction(
+            args: files,
+          ),
+        );
       });
 
       // handle dropped strings
@@ -223,9 +249,11 @@ Future<void> postInit(BuildContext context, Ref ref, bool appStart) async {
       await setupMethodCallHandler();
     } else {
       final args = ref.read(appArgumentsProvider);
-      await ref.global.dispatchAsync(_HandleAppStartArgumentsAction(
-        args: args,
-      ));
+      await ref.global.dispatchAsync(
+        _HandleAppStartArgumentsAction(
+          args: args,
+        ),
+      );
     }
   }
 
@@ -239,17 +267,21 @@ Future<void> postInit(BuildContext context, Ref ref, bool appStart) async {
       if (initialSharedPayload != null) {
         hasInitialShare = true;
         // ignore: unawaited_futures
-        ref.global.dispatchAsync(_HandleShareIntentAction(
-          payload: initialSharedPayload,
-        ));
+        ref.global.dispatchAsync(
+          _HandleShareIntentAction(
+            payload: initialSharedPayload,
+          ),
+        );
       }
     }
 
     _sharedMediaSubscription?.cancel(); // ignore: unawaited_futures
-    _sharedMediaSubscription = shareHandler.sharedMediaStream.listen((SharedMedia payload) {
-      ref.global.dispatchAsync(_HandleShareIntentAction(
-        payload: payload,
-      ));
+    _sharedMediaSubscription = shareHandler.sharedMediaStream.listen((SharedMedia payload) async {
+      await ref.global.dispatchAsync(
+        _HandleShareIntentAction(
+          payload: payload,
+        ),
+      );
     });
   }
 
@@ -280,10 +312,14 @@ class _HandleShareIntentAction extends AsyncGlobalAction {
     if (message != null && message.trim().isNotEmpty) {
       ref.redux(selectedSendingFilesProvider).dispatch(AddMessageAction(message: message));
     }
-    await ref.redux(selectedSendingFilesProvider).dispatchAsync(AddFilesAction(
-          files: payload.attachments?.where((a) => a != null).cast<SharedAttachment>() ?? <SharedAttachment>[],
-          converter: CrossFileConverters.convertSharedAttachment,
-        ));
+    await ref
+        .redux(selectedSendingFilesProvider)
+        .dispatchAsync(
+          AddFilesAction(
+            files: payload.attachments?.where((a) => a != null).cast<SharedAttachment>() ?? <SharedAttachment>[],
+            converter: CrossFileConverters.convertSharedAttachment,
+          ),
+        );
 
     ref.redux(homePageControllerProvider).dispatch(ChangeTabAction(HomeTab.send));
   }
